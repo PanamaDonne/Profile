@@ -2,6 +2,7 @@ package com.momo.demo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,21 +31,35 @@ public class classes extends Activity {
 
         button1=(Button)findViewById(R.id.button1);
         button1.setText("SAUNA");
+        button1.setTextColor(Color.WHITE);
+        button1.setTextSize(50.0f);
 
         button2=(Button)findViewById(R.id.button2);
-        button2.setText("YOGA");
+        button2.setText("MASSAGE");
+        button2.setTextColor(Color.WHITE);
+        button2.setTextSize(50.0f);
 
         button3=(Button)findViewById(R.id.button3);
-        button3.setText("TENNIS");
+        button3.setText("YOGA");
+        button3.setTextColor(Color.WHITE);
+        button3.setTextSize(50.0f);
 
         button4=(Button)findViewById(R.id.button4);
-        button4.setText("MASSAGE");
+        button4.setText("TENNIS");
+        button4.setTextColor(Color.WHITE);
+        button4.setTextSize(50.0f);
 
         button5=(Button)findViewById(R.id.button5);
         button5.setText("SWIMMING");
+        button5.setTextColor(Color.WHITE);
+        button5.setTextSize(50.0f);
 
         button6=(Button)findViewById(R.id.button6);
         button6.setText("SQUASH");
+        button6.setTextColor(Color.WHITE);
+        button6.setTextSize(50.0f);
+
+
 
 
         button1.setOnClickListener(new View.OnClickListener() {

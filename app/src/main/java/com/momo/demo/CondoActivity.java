@@ -2,6 +2,7 @@ package com.momo.demo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,15 +23,19 @@ public class CondoActivity extends Activity {
 
         button1=(Button)findViewById(R.id.button1);
         button1.setText("YOUR SCHEDULE");
+        button1.setTextColor(Color.WHITE);
+        button1.setTextSize(50.0f);
 
         button2=(Button)findViewById(R.id.button2);
         button2.setText("SCHEDULE CLASSES");
+        button2.setTextColor(Color.WHITE);
+        button2.setTextSize(50.0f);
 
         button3=(Button)findViewById(R.id.button3);
-        button3.setText("HOUSING PROBLEM");
+        button3.setText("CONTACT CONDO");
+        button3.setTextColor(Color.WHITE);
+        button3.setTextSize(50.0f);
 
-        button4=(Button)findViewById(R.id.button4);
-        button4.setText("NEWS");
 
         button1.setOnClickListener(new OnClickListener() {
 
