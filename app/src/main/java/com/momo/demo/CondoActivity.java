@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 
 public class CondoActivity extends Activity {
 
+    private Button profile;
     private Button button1;
     private Button button2;
     private Button button3;
@@ -21,20 +22,22 @@ public class CondoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condo);
 
+        profile=(Button)findViewById(R.id.profile);
+        profile.setTextColor(Color.WHITE);
+
         button1=(Button)findViewById(R.id.button1);
-        button1.setText("YOUR SCHEDULE");
         button1.setTextColor(Color.WHITE);
-        button1.setTextSize(50.0f);
+
 
         button2=(Button)findViewById(R.id.button2);
-        button2.setText("SCHEDULE CLASSES");
         button2.setTextColor(Color.WHITE);
-        button2.setTextSize(50.0f);
+
 
         button3=(Button)findViewById(R.id.button3);
-        button3.setText("CONTACT CONDO");
         button3.setTextColor(Color.WHITE);
-        button3.setTextSize(50.0f);
+
+        button4=(Button)findViewById(R.id.button4);
+        button4.setTextColor(Color.WHITE);
 
 
         button1.setOnClickListener(new OnClickListener() {

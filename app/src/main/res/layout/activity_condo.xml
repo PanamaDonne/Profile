@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ScrollView01"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/agenda">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
 
+    <TableRow
+        android:id="@+id/tableRow0"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
+        <Button
+            android:id="@+id/profile"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Donnie Hanson Apt. 223"
+            android:background="#CC000000"/>
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="0dp"
-                android:layout_height="320dp"
-                android:background="#BBFF8800"
-                android:layout_weight="1"/>
+    </TableRow>
 
-        </TableRow>
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="MY CALENDAR"
+            android:drawableTop="@drawable/calendar"/>
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="320dp"
-                android:background="#BBFF8833"
-                android:layout_weight="1" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="BOOK CLASSES"
+            android:drawableTop="@drawable/booking"/>
+    </TableRow>
 
-        </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="NEWS"
+            android:drawableTop="@drawable/calendar"/>
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="320dp"
-                android:background="#BBFF8844"
-                android:layout_weight="1" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="CONTACT THE LANDLORD"
+            android:drawableTop="@drawable/calendar"/>
+    </TableRow>
 
-        </TableRow>
-
-
-    </TableLayout>
-</ScrollView>
+</TableLayout>
