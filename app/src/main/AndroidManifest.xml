@@ -36,6 +36,10 @@
             android:name=".report"
             android:label="@string/title_activity_report" >
         </activity>
+        <activity
+            android:name=".mural"
+            android:label="@string/title_activity_mural" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

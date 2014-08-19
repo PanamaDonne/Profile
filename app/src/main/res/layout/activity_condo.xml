@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MY CALENDAR"
+            android:text="MINHA AGENDA"
             android:drawableTop="@drawable/calendar"/>
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="BOOK CLASSES"
+            android:text=" ATIVIDADES"
             android:drawableTop="@drawable/booking"/>
     </TableRow>
 
@@ -55,16 +55,39 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="NEWS"
-            android:drawableTop="@drawable/calendar"/>
+            android:text="MURAL"
+            android:drawableTop="@drawable/mural"/>
 
         <Button
             android:id="@+id/button4"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="CONTACT THE LANDLORD"
-            android:drawableTop="@drawable/calendar"/>
+            android:text="SÍNDICO"
+            android:drawableTop="@drawable/sindico"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="PORTARIA"
+            android:drawableTop="@drawable/portaria"/>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="SEU CONDOMÍNIO"
+            android:drawableTop="@drawable/condo"/>
     </TableRow>
 
 </TableLayout>
