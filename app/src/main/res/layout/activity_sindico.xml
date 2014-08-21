@@ -9,15 +9,22 @@
     tools:context=".StartActivity"
     android:background="@drawable/bg">
 
-    <ListView
-        android:id="@+id/listView"
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="30dip"
-        android:divider="@android:color/transparent"
-        android:background="#AAFFFFFF"/>
+        android:layout_height="200dp"
+        android:id="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:background="#AAFFFFFF"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:hint="Escreva aqui sua mensagem..."
+        />
 
-
-
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/editText"
+        />
 </RelativeLayout>
-

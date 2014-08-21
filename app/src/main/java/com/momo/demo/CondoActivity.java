@@ -74,6 +74,33 @@ public class CondoActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        button4.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CondoActivity.this,sindico.class);
+                startActivity(intent);
+            }
+        });
+
+        button5.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CondoActivity.this,portaria.class);
+                startActivity(intent);
+            }
+        });
+
+        button6.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CondoActivity.this,myCondo.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

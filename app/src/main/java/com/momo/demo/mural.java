@@ -33,12 +33,12 @@ public class mural extends Activity {
         button1 = (Button) findViewById(R.id.button1);
         button1.setText("Reunião de Condomínio (22 de agosto)");
         button1.setTextColor(Color.WHITE);
-        button1.setTextSize(16.0f);
+        button1.setTextSize(20.0f);
 
         button2 = (Button) findViewById(R.id.button2);
         button2.setText("Início das obras de melhoria na garagem        (31 de agosto a 10 de setembro)");
         button2.setTextColor(Color.WHITE);
-        button2.setTextSize(16.0f);
+        button2.setTextSize(20.0f);
 
 
     }

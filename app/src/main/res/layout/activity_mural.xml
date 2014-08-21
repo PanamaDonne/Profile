@@ -7,37 +7,37 @@
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_height="150dp">
 
             <Button
                 android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BB80BD94"
-                android:layout_weight="1"/>
-
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:text="Reunião de Condomínio (22 de agosto)"
+                />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_height="150dp">
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BB8DC49F"
-                android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1"
+                android:text=" Início das obras de melhoria na garagem (31 de agosto a 10 de setembro)"
+                />
 
         </TableRow>
+
     </TableLayout>
 </ScrollView>
-

@@ -43,6 +43,8 @@ public class sauna extends Activity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Toast.makeText(getApplicationContext(), "Atividade marcada! Você receberá uma notificação duas horas antes da sua atividade. Bem-vindo!",
                                             Toast.LENGTH_LONG).show();
+
+                          
                                 }
                             });
                     builder1.setCancelable(true);

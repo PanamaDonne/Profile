@@ -7,35 +7,37 @@
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BB80BD94"
-                android:layout_weight="1"/>
-
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Sauna"
+                />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_weight="1" >
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BB8DC49F"
-                android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Yoga"
+                />
 
         </TableRow>
 
@@ -43,14 +45,15 @@
             android:id="@+id/tableRow3"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_weight="1" >
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BB98CAA9"
-                android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Natação"
+                />
 
         </TableRow>
 
@@ -58,14 +61,15 @@
             android:id="@+id/tableRow4"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_weight="1" >
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BBA2CFB2"
-                android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Massagem"
+                />
 
         </TableRow>
 
@@ -73,31 +77,19 @@
             android:id="@+id/tableRow5"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0" >
+            android:layout_weight="1" >
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BBABD4BA"
-                android:layout_weight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Tênis"
+                />
 
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0" >
 
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:background="#BBB3D8C1"
-                android:layout_weight="1"/>
-
-        </TableRow>
     </TableLayout>
 </ScrollView>
 

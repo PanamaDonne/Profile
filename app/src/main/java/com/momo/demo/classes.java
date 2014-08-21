@@ -30,34 +30,25 @@ public class classes extends Activity {
         setContentView(R.layout.activity_classes);
 
         button1=(Button)findViewById(R.id.button1);
-        button1.setText("Sauna");
         button1.setTextColor(Color.WHITE);
         button1.setTextSize(30.0f);
 
         button2=(Button)findViewById(R.id.button2);
-        button2.setText("Massagem");
         button2.setTextColor(Color.WHITE);
         button2.setTextSize(30.0f);
 
         button3=(Button)findViewById(R.id.button3);
-        button3.setText("Yoga");
         button3.setTextColor(Color.WHITE);
         button3.setTextSize(30.0f);
 
         button4=(Button)findViewById(R.id.button4);
-        button4.setText("Tênis");
         button4.setTextColor(Color.WHITE);
         button4.setTextSize(30.0f);
 
         button5=(Button)findViewById(R.id.button5);
-        button5.setText("Natação");
         button5.setTextColor(Color.WHITE);
         button5.setTextSize(30.0f);
 
-        button6=(Button)findViewById(R.id.button6);
-        button6.setText("Squash");
-        button6.setTextColor(Color.WHITE);
-        button6.setTextSize(30.0f);
 
 
 

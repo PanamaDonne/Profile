@@ -40,6 +40,22 @@
             android:name=".mural"
             android:label="@string/title_activity_mural" >
         </activity>
+        <activity
+            android:name=".sindico"
+            android:label="@string/title_activity_sindico" >
+        </activity>
+        <activity
+            android:name=".portaria"
+            android:label="@string/title_activity_portaria" >
+        </activity>
+        <activity
+            android:name=".myCondo"
+            android:label="@string/title_activity_my_condo" >
+        </activity>
+        <activity
+            android:name=".map"
+            android:label="@string/title_activity_map" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
