@@ -36,7 +36,7 @@ public class mural extends Activity {
         button1.setTextSize(20.0f);
 
         button2 = (Button) findViewById(R.id.button2);
-        button2.setText("Início das obras de melhoria na garagem        (31 de agosto a 10 de setembro)");
+        button2.setText("Início das obras de melhoria na garagem (31 de agosto a 10 de setembro)");
         button2.setTextColor(Color.WHITE);
         button2.setTextSize(20.0f);
 

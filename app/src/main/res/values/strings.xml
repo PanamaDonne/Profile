@@ -14,5 +14,6 @@
     <string name="title_activity_portaria">portaria</string>
     <string name="title_activity_my_condo">myCondo</string>
     <string name="title_activity_map">map</string>
+    <string name="title_activity_delivery">delivery</string>
 
 </resources>

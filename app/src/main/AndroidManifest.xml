@@ -56,6 +56,10 @@
             android:name=".map"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name=".delivery"
+            android:label="@string/title_activity_delivery" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
