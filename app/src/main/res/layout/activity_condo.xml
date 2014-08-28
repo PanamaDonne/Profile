@@ -3,7 +3,7 @@
     android:id="@+id/tableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg">
+    android:background="#FFFFFF">
 
     <TableRow
         android:id="@+id/tableRow0"
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MINHA AGENDA"
+            android:text="TENIS"
             android:drawableTop="@drawable/calendar"/>
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text=" ATIVIDADES"
+            android:text="MASSAGEM"
             android:drawableTop="@drawable/booking"/>
     </TableRow>
 
@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MURAL"
+            android:text="SAUNA"
             android:drawableTop="@drawable/mural"/>
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="SÍNDICO"
+            android:text="ACADEMIA"
             android:drawableTop="@drawable/sindico"/>
     </TableRow>
 
@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="PORTARIA"
+            android:text="MY BOOKINGS"
             android:drawableTop="@drawable/portaria"/>
 
         <Button
