@@ -5,21 +5,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <TableRow
-        android:id="@+id/tableRow0"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2">
-
-        <Button
-            android:id="@+id/profile"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="Donnie Hanson Apt. 223"
-            android:background="#CC000000"/>
-
-    </TableRow>
 
     <TableRow
         android:id="@+id/tableRow1"
@@ -32,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="TENIS"
+            android:text="MINHA AGENDA"
             android:drawableTop="@drawable/calendar"/>
 
         <Button
@@ -40,7 +25,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MASSAGEM"
+            android:text="TENIS"
             android:drawableTop="@drawable/booking"/>
     </TableRow>
 
@@ -55,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="SAUNA"
+            android:text="MASSAGEM"
             android:drawableTop="@drawable/mural"/>
 
         <Button
@@ -67,27 +52,5 @@
             android:drawableTop="@drawable/sindico"/>
     </TableRow>
 
-    <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="MY BOOKINGS"
-            android:drawableTop="@drawable/portaria"/>
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="SEU CONDOMÍNIO"
-            android:drawableTop="@drawable/condo"/>
-    </TableRow>
 
 </TableLayout>
