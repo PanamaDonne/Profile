@@ -9,11 +9,12 @@
     <string name="title_activity_classes">CLASSES</string>
     <string name="title_activity_report">REPORT A PROBLEM</string>
     <string name="title_activity_mural">mural</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_agenda">Minha Agenda</string>
     <string name="title_activity_sindico">sindico</string>
     <string name="title_activity_portaria">portaria</string>
     <string name="title_activity_my_condo">myCondo</string>
     <string name="title_activity_map">map</string>
     <string name="title_activity_delivery">delivery</string>
+    <string name="title_activity_agenda">agenda</string>
 
 </resources>

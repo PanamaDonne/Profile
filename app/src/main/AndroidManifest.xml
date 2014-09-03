@@ -12,6 +12,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,6 +59,10 @@
         <activity
             android:name=".delivery"
             android:label="@string/title_activity_delivery" >
+        </activity>
+        <activity
+            android:name=".agenda"
+            android:label="@string/title_activity_agenda" >
         </activity>
     </application>
 

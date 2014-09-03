@@ -41,7 +41,7 @@ public class CondoActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CondoActivity.this,schedule.class);
+                Intent intent = new Intent(CondoActivity.this,agenda.class);
                 startActivity(intent);
             }
         });
