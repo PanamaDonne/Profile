@@ -15,6 +15,15 @@
         android:id="@+id/calendarView"
          />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
@@ -25,6 +34,8 @@
         android:background="#AAFFFFFF"
         android:divider="@android:color/transparent"
         android:layout_below="@id/calendarView"/>
+
+    
 
 
 </RelativeLayout>
