@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,11 +49,12 @@ public class schedule extends Activity {
     public String date;
     private Boolean booked;
     private String period;
-    private ArrayList<String> listItems=new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
     private String ObjectId;
     private CalendarView calendarView;
     String currentDateTime;
+    private TextView text;
+    ParseQueryAdapter.QueryFactory<ParseObject> factory;
+    ParseQueryAdapter<ParseObject> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,21 +66,12 @@ public class schedule extends Activity {
 
         // INIT PARSE.COM
         parse();
+        parseFactory();
 
-         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
+        currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
 
-        // textView is the TextView view that should display it
-        TextView text = (TextView) findViewById(R.id.textView);
+        text = (TextView) findViewById(R.id.textView);
         text.setText(currentDateTime);
-
-        listItems.add("07:00 - 08:00");
-        listItems.add("08:00 - 09:00");
-
-        adapter=new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                listItems);
-        listView.setAdapter(adapter);
-
 
 
 
@@ -89,7 +82,9 @@ public class schedule extends Activity {
 
                 Log.i(TAG, "DATE LIST CLICK: " + date);
 
-                //PARSEQUERY STARTS WITH "DATE"
+
+
+                ObjectId = adapter.getItem(position).getObjectId();
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                 builder1.setMessage("Você quer agendar este horario?");
@@ -98,15 +93,15 @@ public class schedule extends Activity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("booking_test");
-
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("periods");
 
                                 query.getInBackground(ObjectId, new GetCallback<ParseObject>() {
-                                    public void done(ParseObject booking_test, ParseException e) {
+                                    public void done(ParseObject periods, ParseException e) {
                                         if (e == null) {
 
-                                            booking_test.put("booked", true);
-                                            booking_test.saveInBackground();
+                                            periods.put("booked", true);
+                                            periods.saveInBackground();
+                                            //periods.put("user", user);
                                             booked = true;
 
 
@@ -137,19 +132,12 @@ public class schedule extends Activity {
         });
 
 
-
-
-
-
-
-
-
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
 
+                month = month +1;
                 StringBuilder sb = new StringBuilder();
                 sb.append(year);
                 sb.append("0" + month);
@@ -157,90 +145,50 @@ public class schedule extends Activity {
                 date = sb.toString();
                 Log.i(TAG, "DATE: " + date);
 
+                text.setText(date);
 
+                parseFactory();
+                adapter.notifyDataSetChanged();
 
 
             }
         });
 
-
-
-
-
     }
 
-
-
-
+    // Init Parse
     void parse() {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
 
     }
 
+    // Init Parse Adapter
+    void parseFactory() {
+        factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
 
-    void parseQuery() {
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("booking_test");
-
-
-
-        query.getInBackground("p3v9ix1D94", new GetCallback<ParseObject>() {
-            public void done(ParseObject booking_test, ParseException e) {
-                if (e == null) {
-
-                    JSONArray periodArr = booking_test.getJSONArray("periods");
-
-                    Log.i(TAG, "JSONARR: " + periodArr);
-
-                    for(int i=0; i< periodArr.length(); i++){
-
-                        period = null;
-                        try {
-                            period = periodArr.getString(i);
-                        } catch (JSONException e1) {
-                            e1.printStackTrace();
-                        }
-
-                        Log.i(TAG, "STRING: " + period);
-
-                        listItems.add(period);
-
-                    }
-
-                }
+            public ParseQuery create() {
+                ParseQuery query = new ParseQuery("periods");
+                query.whereEqualTo("date", date);
+                return query;
             }
-        });
+        };
+
+        adapter = new ParseQueryAdapter<ParseObject>(this, factory);
+        adapter.setTextKey("period");
+        listView.setAdapter(adapter);
+    }
+
+    // booking
+    void booking () {
+        if (booked == true) {
 
 
 
-        return;
+        }
     }
 
 
-    void dialog () {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-        builder1.setMessage("Você quer agendar este horario?");
 
-        builder1.setPositiveButton("Sim",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
-                                Toast.LENGTH_LONG).show();
-
-                    }
-                });
-        builder1.setCancelable(true);
-        builder1.setNegativeButton("Cancelar",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-    }
 
 
 
