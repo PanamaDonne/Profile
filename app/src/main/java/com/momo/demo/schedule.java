@@ -6,40 +6,24 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
-
-import java.lang.reflect.Array;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
-import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseObject;
-
-
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 
 public class schedule extends Activity {
@@ -53,8 +37,8 @@ public class schedule extends Activity {
     private CalendarView calendarView;
     String currentDateTime;
     private TextView text;
-    ParseQueryAdapter.QueryFactory<ParseObject> factory;
-    ParseQueryAdapter<ParseObject> adapter;
+    private ParseQueryAdapter.QueryFactory<ParseObject> factory;
+    private ParseQueryAdapter<ParseObject> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +50,17 @@ public class schedule extends Activity {
 
         // INIT PARSE.COM
         parse();
-        parseFactory();
+
+        // PARSE QUERY ADAPTER
+        query();
+        adapter = new ParseQueryAdapter<ParseObject>(this, factory);
+        adapter.setTextKey("period");
+
+        listView.setAdapter(adapter);
+
+
+
+
 
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
 
@@ -76,15 +70,30 @@ public class schedule extends Activity {
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(final AdapterView<?> parent, View view,
+                                    final int position, long id) {
 
 
                 Log.i(TAG, "DATE LIST CLICK: " + date);
+                Log.i(TAG, "POSITION: " + position);
 
 
 
-                ObjectId = adapter.getItem(position).getObjectId();
+                final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+                query.whereEqualTo("date", date);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    public void done(List<ParseObject> bookedList, ParseException e) {
+                        if (e == null) {
+
+
+                        } else {
+                            Log.d("score", "Error: " + e.getMessage());
+                        }
+                    }
+                });
+
+
+
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                 builder1.setMessage("Você quer agendar este horario?");
@@ -93,21 +102,171 @@ public class schedule extends Activity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("periods");
-
-                                query.getInBackground(ObjectId, new GetCallback<ParseObject>() {
-                                    public void done(ParseObject periods, ParseException e) {
-                                        if (e == null) {
-
-                                            periods.put("booked", true);
-                                            periods.saveInBackground();
-                                            //periods.put("user", user);
-                                            booked = true;
 
 
-                                        }
+                                ParseObject bookings = new ParseObject("bookings_tennis");
+
+
+
+                                switch (position) {
+
+
+                                    case 0:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "07:00 - 08:00");
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 0);
+                                        bookings.saveInBackground();
+
+
                                     }
-                                });
+                                        break;
+                                    case 1:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "08:00 - 09:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 1);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 2:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "09:00 - 10:00" );
+                                        bookings.put("booked", true);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 3:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "10:00 - 11:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 2);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 4:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "11:00 - 12:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 3);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 5:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "12:00 - 13:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 4);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 6:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "13:00 - 14:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 5);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 7:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "14:00 - 15:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 6);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 8:  {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "15:00 - 16:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 7);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 9: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "16:00 - 17:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 8);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 10: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "17:00 - 18:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 9);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 11: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "18:00 - 19:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 10);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 12: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "19:00 - 20:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 11);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 13: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "20:00 - 21:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 12);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                    case 14: {
+
+                                        bookings.put("date", date);
+                                        bookings.put("periods", "21:00 - 22:00" );
+                                        bookings.put("booked", true);
+                                        bookings.put("position", 13);
+                                        bookings.saveInBackground();
+
+                                    }
+                                        break;
+                                }
+
+
+
+
+
 
                                 Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
                                         Toast.LENGTH_LONG).show();
@@ -147,8 +306,7 @@ public class schedule extends Activity {
 
                 text.setText(date);
 
-                parseFactory();
-                adapter.notifyDataSetChanged();
+
 
 
             }
@@ -162,29 +320,36 @@ public class schedule extends Activity {
 
     }
 
-    // Init Parse Adapter
-    void parseFactory() {
+
+    void query() {
         factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
-
-            public ParseQuery create() {
-                ParseQuery query = new ParseQuery("periods");
-                query.whereEqualTo("date", date);
-                return query;
-            }
+           public ParseQuery create() {
+                  ParseQuery query = new ParseQuery("periods");
+                  return query;
+           }
         };
-
-        adapter = new ParseQueryAdapter<ParseObject>(this, factory);
-        adapter.setTextKey("period");
-        listView.setAdapter(adapter);
     }
 
+
+    void tennisQuery() {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+        query.getInBackground(ObjectId, new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    // object will be your game score
+                } else {
+                    // something went wrong
+                }
+            }
+        });
+    }
+
+
+
+
     // booking
-    void booking () {
-        if (booked == true) {
-
-
-
-        }
+    void booked () {
+        Log.i(TAG, "ALREADY BOOKED!");
     }
 
 
