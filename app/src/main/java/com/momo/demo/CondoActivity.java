@@ -8,8 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
+
 
 public class CondoActivity extends Activity {
+
+
+
 
     private Button button1;
     private Button button2;
@@ -20,6 +28,8 @@ public class CondoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condo);
+
+        checkLoggedIn();
 
 
         button1=(Button)findViewById(R.id.button1);
@@ -73,6 +83,46 @@ public class CondoActivity extends Activity {
             }
         });*/
 
+    }
+
+
+
+    void checkLoggedIn() {
+
+        // Add your initialization code here
+        Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
+
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+
+        // If you would like all objects to be private by default, remove this
+        // line.
+        defaultACL.setPublicReadAccess(true);
+
+        ParseACL.setDefaultACL(defaultACL, true);
+        // Determine whether the current user is an anonymous user
+        if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+            // If user is anonymous, send the user to LoginSignupActivity.class
+            Intent intent = new Intent(CondoActivity.this,
+                    LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            // If current user is NOT anonymous user
+            // Get current user data from Parse.com
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (currentUser != null) {
+                // Do nothing
+
+            } else {
+                // Send user to LoginSignupActivity.class
+                Intent intent = new Intent(CondoActivity.this,
+                        LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
     }
 
 

@@ -16,5 +16,7 @@
     <string name="title_activity_map">map</string>
     <string name="title_activity_delivery">delivery</string>
     <string name="title_activity_agenda">agenda</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
