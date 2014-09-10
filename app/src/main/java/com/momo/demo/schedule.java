@@ -78,13 +78,16 @@ public class schedule extends Activity {
                 Log.i(TAG, "POSITION: " + position);
 
 
-
+                // CHECK IF BOOKED.
                 final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
                 query.whereEqualTo("date", date);
+                query.whereEqualTo("position", position);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> bookedList, ParseException e) {
                         if (e == null) {
+                            Log.i(TAG, "FOUND: " + bookedList.size());
 
+                            // PUT "BOOKED" & "PUT IN QUE" IN ROW
 
                         } else {
                             Log.d("score", "Error: " + e.getMessage());
@@ -137,6 +140,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "09:00 - 10:00" );
                                         bookings.put("booked", true);
+                                        bookings.put("position", 2);
                                         bookings.saveInBackground();
 
                                     }
@@ -146,7 +150,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "10:00 - 11:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 2);
+                                        bookings.put("position", 3);
                                         bookings.saveInBackground();
 
                                     }
@@ -156,7 +160,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "11:00 - 12:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 3);
+                                        bookings.put("position", 4);
                                         bookings.saveInBackground();
 
                                     }
@@ -166,7 +170,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "12:00 - 13:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 4);
+                                        bookings.put("position", 5);
                                         bookings.saveInBackground();
 
                                     }
@@ -176,7 +180,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "13:00 - 14:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 5);
+                                        bookings.put("position", 6);
                                         bookings.saveInBackground();
 
                                     }
@@ -186,7 +190,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "14:00 - 15:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 6);
+                                        bookings.put("position", 7);
                                         bookings.saveInBackground();
 
                                     }
@@ -196,7 +200,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "15:00 - 16:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 7);
+                                        bookings.put("position", 8);
                                         bookings.saveInBackground();
 
                                     }
@@ -206,7 +210,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "16:00 - 17:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 8);
+                                        bookings.put("position", 9);
                                         bookings.saveInBackground();
 
                                     }
@@ -216,7 +220,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "17:00 - 18:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 9);
+                                        bookings.put("position", 10);
                                         bookings.saveInBackground();
 
                                     }
@@ -226,7 +230,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "18:00 - 19:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 10);
+                                        bookings.put("position", 11);
                                         bookings.saveInBackground();
 
                                     }
@@ -236,7 +240,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "19:00 - 20:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 11);
+                                        bookings.put("position", 12);
                                         bookings.saveInBackground();
 
                                     }
@@ -246,7 +250,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "20:00 - 21:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 12);
+                                        bookings.put("position", 13);
                                         bookings.saveInBackground();
 
                                     }
@@ -256,7 +260,7 @@ public class schedule extends Activity {
                                         bookings.put("date", date);
                                         bookings.put("periods", "21:00 - 22:00" );
                                         bookings.put("booked", true);
-                                        bookings.put("position", 13);
+                                        bookings.put("position", 14);
                                         bookings.saveInBackground();
 
                                     }
@@ -329,30 +333,6 @@ public class schedule extends Activity {
            }
         };
     }
-
-
-    void tennisQuery() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
-        query.getInBackground(ObjectId, new GetCallback<ParseObject>() {
-            public void done(ParseObject object, ParseException e) {
-                if (e == null) {
-                    // object will be your game score
-                } else {
-                    // something went wrong
-                }
-            }
-        });
-    }
-
-
-
-
-    // booking
-    void booked () {
-        Log.i(TAG, "ALREADY BOOKED!");
-    }
-
-
 
 
 
