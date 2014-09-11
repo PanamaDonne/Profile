@@ -2,6 +2,7 @@ package com.momo.demo;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -31,14 +32,13 @@ public class schedule extends Activity {
     private String TAG;
     private ListView listView;
     public String date;
-    private Boolean booked;
-    private String period;
-    private String ObjectId;
     private CalendarView calendarView;
     String currentDateTime;
     private TextView text;
-    private ParseQueryAdapter.QueryFactory<ParseObject> factory;
-    private ParseQueryAdapter<ParseObject> adapter;
+    //private ParseQueryAdapter.QueryFactory<ParseObject> factory;
+    //private ParseQueryAdapter<ParseObject> adapter;
+    private PeriodListAdapter periodAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +48,16 @@ public class schedule extends Activity {
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         listView = (ListView) findViewById(R.id.listView);
 
+
+        // Subclass of ParseQueryAdapter
+        periodAdapter = new PeriodListAdapter(this);
+
+
         // INIT PARSE.COM
+        ParseObject.registerSubclass(Period.class);
         parse();
 
-        // PARSE QUERY ADAPTER
-        query();
-        adapter = new ParseQueryAdapter<ParseObject>(this, factory);
-        adapter.setTextKey("period");
-
-        listView.setAdapter(adapter);
+        listView.setAdapter(periodAdapter);
 
 
 
@@ -87,7 +88,7 @@ public class schedule extends Activity {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
 
-                            // PUT "BOOKED" & "PUT IN QUE" IN ROW
+
 
                         } else {
                             Log.d("score", "Error: " + e.getMessage());
@@ -312,7 +313,6 @@ public class schedule extends Activity {
 
 
 
-
             }
         });
 
@@ -323,18 +323,6 @@ public class schedule extends Activity {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
 
     }
-
-
-    void query() {
-        factory = new ParseQueryAdapter.QueryFactory<ParseObject>() {
-           public ParseQuery create() {
-                  ParseQuery query = new ParseQuery("periods");
-                  return query;
-           }
-        };
-    }
-
-
 
 
 
