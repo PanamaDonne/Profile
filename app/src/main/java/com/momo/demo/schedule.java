@@ -88,6 +88,36 @@ public class schedule extends Activity {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
 
+                            if(bookedList.size() > 0) {
+
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                                builder1.setMessage("Do you want to be in the 'reserve list' for this period?(translate!)");
+
+                                builder1.setPositiveButton("Sim",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                                Toast.makeText(getApplicationContext(), "You are reserve no X for this period(translate!).",
+                                                        Toast.LENGTH_LONG).show();
+
+                                            }
+                                        });
+                                builder1.setCancelable(true);
+                                builder1.setNegativeButton("Cancelar",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
+
+                            }
+
+
+
 
 
                         } else {

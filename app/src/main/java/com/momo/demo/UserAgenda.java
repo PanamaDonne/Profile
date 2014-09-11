@@ -14,19 +14,23 @@ import java.util.List;
  * Created by daniel-home on 11/09/14.
  */
 
-@ParseClassName("periods")
-public class Period extends ParseObject {
-
-    String booked;
+@ParseClassName("bookings_tennis")
+public class UserAgenda extends ParseObject {
 
 
 
-    public Period() {
+
+
+    public UserAgenda() {
         // A default constructor is required.
     }
 
     public String getTitle() {
-        return getString("period");
+        return getString("date");
+    }
+
+    public String getPeriod() {
+        return getString("periods");
     }
 
 

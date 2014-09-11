@@ -15,35 +15,25 @@ import com.parse.ParseQueryAdapter;
 
 public class agenda extends Activity {
 
+    private AgendaListAdapter agendaListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
+        // Subclass of ParseQueryAdapter
+        agendaListAdapter = new AgendaListAdapter(this);
+
+
+        // INIT PARSE.COM
+        ParseObject.registerSubclass(UserAgenda.class);
         parse();
-
-
-        // Instantiate a QueryFactory to define the ParseQuery to be used for fetching items in this
-        // Adapter.
-        ParseQueryAdapter.QueryFactory<ParseObject> agenda =
-                new ParseQueryAdapter.QueryFactory<ParseObject>() {
-                    public ParseQuery create() {
-                        ParseQuery query = new ParseQuery("booking_tennis");
-                        query.whereEqualTo("booked", true);
-                        //query.orderByDescending("moneySpent");
-                        return query;
-                    }
-                };
-
-        // Pass the factory into the ParseQueryAdapter's constructor.
-        ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(this, agenda);
-        adapter.setTextKey("periods");
-
-
-
-        // Attach it to your ListView, as in the example above
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
+        listView.setAdapter(agendaListAdapter);
+
+
+
     }
 
     void parse() {

@@ -14,9 +14,11 @@
     <TextView
         android:layout_below="@+id/calendarView"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
+        android:textSize="20dip"
+        android:background="#AAFFFFFF"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
