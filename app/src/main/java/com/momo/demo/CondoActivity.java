@@ -65,16 +65,21 @@ public class CondoActivity extends Activity {
             }
         });
 
-        /*button3.setOnClickListener(new OnClickListener() {
+
+
+        button3.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CondoActivity.this,mural.class);
+                // Logout current user
+                ParseUser.logOut();
+                Intent intent = new Intent(CondoActivity.this,LoginActivity.class);
                 startActivity(intent);
+
             }
         });
 
-        button4.setOnClickListener(new OnClickListener() {
+        /*button4.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {

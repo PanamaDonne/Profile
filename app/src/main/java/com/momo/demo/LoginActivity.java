@@ -1,19 +1,74 @@
 package com.momo.demo;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class LoginActivity extends Activity {
+    // Declare Variables
+    Button loginbutton;
+    String usernametxt;
+    String passwordtxt;
+    EditText password;
+    EditText username;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    /** Called when the activity is first created. */
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Get the view from main.xml
         setContentView(R.layout.activity_login);
+        // Locate EditTexts in main.xml
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+
+        // Locate Buttons in main.xml
+        loginbutton = (Button) findViewById(R.id.login);
+
+
+        // Login Button Click Listener
+        loginbutton.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View arg0) {
+                // Retrieve the text entered from the EditText
+                usernametxt = username.getText().toString();
+                passwordtxt = password.getText().toString();
+
+                // Send data to Parse.com for verification
+                ParseUser.logInInBackground(usernametxt, passwordtxt,
+                        new LogInCallback() {
+                            public void done(ParseUser user, ParseException e) {
+                                if (user != null) {
+
+                                    Intent intent = new Intent(
+                                            LoginActivity.this,
+                                            CondoActivity.class);
+                                    startActivity(intent);
+                                    Toast.makeText(getApplicationContext(),
+                                            "Successfully Logged in",
+                                            Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            "No such user exist. Please try again.",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
+        });
+
+
+
     }
-
-
 }

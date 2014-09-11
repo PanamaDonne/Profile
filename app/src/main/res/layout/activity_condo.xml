@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MASSAGEM"
+            android:text="LOGOUT (ONLY FOR TEST)"
             android:drawableTop="@drawable/mural"/>
 
         <Button
