@@ -1,5 +1,6 @@
 package com.momo.demo;
 
+import android.nfc.Tag;
 import android.util.Log;
 
 import com.parse.FindCallback;
@@ -16,8 +17,6 @@ import java.util.List;
 
 @ParseClassName("periods")
 public class Period extends ParseObject {
-
-    String booked;
 
 
 

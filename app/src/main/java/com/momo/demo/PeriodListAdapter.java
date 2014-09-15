@@ -6,14 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by daniel-home on 11/09/14.
@@ -21,6 +24,7 @@ import java.util.Arrays;
 public class PeriodListAdapter extends ParseQueryAdapter<Period> {
 
     private String TAG = "PeriodListAdapter";
+
 
 
 
@@ -54,8 +58,13 @@ public class PeriodListAdapter extends ParseQueryAdapter<Period> {
         titleTextView.setText(period.getTitle());
 
 
-        TextView bookedtextView = (TextView) v
-                .findViewById(R.id.text2);
+        TextView bookedtextView = (TextView) v.findViewById(R.id.text2);
+        //bookedtextView.setText(period.getBookedText());
+
+
+
+
+
 
 
 
