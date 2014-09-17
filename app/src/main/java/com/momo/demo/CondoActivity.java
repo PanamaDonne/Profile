@@ -36,6 +36,7 @@ public class CondoActivity extends Activity {
         button1.setTextColor(Color.WHITE);
 
 
+
         button2=(Button)findViewById(R.id.button2);
         button2.setTextColor(Color.WHITE);
 
@@ -104,6 +105,7 @@ public class CondoActivity extends Activity {
         // If you would like all objects to be private by default, remove this
         // line.
         defaultACL.setPublicReadAccess(true);
+
 
         ParseACL.setDefaultACL(defaultACL, true);
         // Determine whether the current user is an anonymous user

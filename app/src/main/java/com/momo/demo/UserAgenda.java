@@ -1,12 +1,15 @@
 package com.momo.demo;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.parse.FindCallback;
+import com.parse.ParseACL;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -33,6 +36,11 @@ public class UserAgenda extends ParseObject {
         return getString("periods");
     }
 
+    public String getUser() {
+        String bookedBy = "Booked by: ";
+
+        return bookedBy + (getString("username"));
+    }
 
 
 }

@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.momo.demo.agenda">
+    tools:context="com.momo.demo.schedule">
 
-    <TextView
-        android:text="@string/title_agenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:padding="5dip"
+        android:layout_weight="1"
+        android:minHeight="100dip"
+        android:dividerHeight="1dip"
+        android:background="#AAFFFFFF"
+        android:divider="@android:color/transparent"/>
 
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

@@ -123,6 +123,8 @@ public class schedule extends Activity {
                                 AlertDialog alert11 = builder1.create();
                                 alert11.show();
                             }
+
+                            // APTO USERS BOOKING PERIOD 1month - 5 days
                             else if ((user.getUsername().equals("test_user1")) && (!currentMonth.equals(monthString))) {
 
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
@@ -152,7 +154,7 @@ public class schedule extends Activity {
                                             public void onClick(DialogInterface dialog, int id) {
 
 
-                                                ParseObject bookings = new ParseObject("bookings_tennis");
+                                                ParseObject bookings = ParseObject.create("bookings_tennis");
 
 
 
@@ -166,6 +168,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 0);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
 
@@ -178,6 +181,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 1);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -189,6 +193,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 2);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -200,6 +205,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 3);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -211,6 +217,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 4);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -222,6 +229,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 5);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -233,6 +241,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 6);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -244,6 +253,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 7);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -255,6 +265,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 8);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -266,6 +277,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 9);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -277,6 +289,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 10);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -288,6 +301,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 11);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -297,8 +311,9 @@ public class schedule extends Activity {
                                                         bookings.put("date", date);
                                                         bookings.put("periods", "19:00 - 20:00" );
                                                         bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
                                                         bookings.put("position", 12);
+                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -310,6 +325,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 13);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }
@@ -321,6 +337,7 @@ public class schedule extends Activity {
                                                         bookings.put("position", 14);
                                                         bookings.put("booked", true);
                                                         bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
                                                         bookings.saveInBackground();
 
                                                     }

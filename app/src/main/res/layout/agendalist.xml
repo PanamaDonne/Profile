@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@drawable/bg">
+    android:layout_height="100dip"
+    android:background="#ffffff">
 
 
     <TextView
-        android:id="@+id/text1"
+        android:id="@+id/textAgenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="35dip"
+        android:textSize="20dip"
         android:paddingLeft="3dip"
-        android:layout_marginLeft="20dp"
-        android:paddingRight="3dip" />
+        android:layout_marginLeft="10dp"
+        android:paddingRight="3dip"
+        android:paddingBottom="50dip"/>
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/textClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/text1"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textAgenda"
+        android:textSize="16dip"
+        android:paddingLeft="3dip"
+        android:text="Tenis"
+        android:layout_marginLeft="80dp"
+        android:paddingRight="3dip"
+        android:paddingBottom="5dip"/>
+
+    <TextView
+        android:id="@+id/textAgenda2"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textAgenda"
         android:paddingLeft="3dip"
         android:paddingRight="3dip"
-        android:textSize="20dip"
-        android:layout_marginLeft="50dip"/>
+        android:textSize="16dip"
+        android:layout_marginLeft="10dip"/>
+
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textAgenda2"
+        android:layout_below="@+id/textAgenda"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:textSize="14dip"
+        android:layout_marginLeft="80dip"/>
 
 </RelativeLayout>
-

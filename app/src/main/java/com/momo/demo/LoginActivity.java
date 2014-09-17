@@ -48,24 +48,14 @@ public class LoginActivity extends Activity {
                         new LogInCallback() {
                             public void done(ParseUser user, ParseException e) {
 
-                                // ------------------ APTO USER -------------------------------
-                                if (user != null && (user.getUsername().equals("test_user1"))) {
+
+
+
+                                if (user != null) {
 
                                     Intent intent = new Intent(
                                             LoginActivity.this,
                                             CondoActivity.class);
-                                    startActivity(intent);
-                                    Toast.makeText(getApplicationContext(),
-                                            "Successfully Logged in",
-                                            Toast.LENGTH_LONG).show();
-                                    finish();
-
-                                // -------------------- ADMIN ---------------------------------
-                                } else if (user != null && (user.getUsername().equals("admin"))) {
-
-                                    Intent intent = new Intent(
-                                            LoginActivity.this,
-                                            schedule.class);
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),
                                             "Successfully Logged in",
