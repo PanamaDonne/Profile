@@ -3,6 +3,7 @@ package com.momo.demo;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -72,75 +73,76 @@ public class agenda extends Activity {
 
                 Log.i(TAG, "LIST TEXT: " + period + " & " + date);
 
+                // USER DELETE PERIOD WHEN CLICK ROW
+                if(!ParseUser.getCurrentUser().getUsername().equals("admin")) {
 
 
-                final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
-                query.whereEqualTo("periods", period);
-                query.whereEqualTo("date", date);
-                query.whereEqualTo("bookedBy", ParseUser.getCurrentUser());
-                query.findInBackground(new FindCallback<ParseObject>() {
-                    public void done(final List<ParseObject> bookedList, ParseException e) {
+                    final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
-                        if (e == null) {
+                    query.whereEqualTo("periods", period);
+                    query.whereEqualTo("date", date);
+                    query.whereEqualTo("bookedBy", ParseUser.getCurrentUser());
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(final List<ParseObject> bookedList, ParseException e) {
 
-                            Log.i(TAG, "FOUND: " + bookedList.size());
+                            if (e == null) {
 
-
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(agenda.this);
-                            builder1.setMessage("You want to delete this period?");
-
-                            builder1.setPositiveButton("Sim",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
+                                Log.i(TAG, "FOUND: " + bookedList.size());
 
 
-                                           bookedList.get(0).deleteInBackground();
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(agenda.this);
+                                builder1.setMessage("You want to delete this period?");
 
-                                            view.animate().setDuration(2000).alpha(0)
-                                                    .withEndAction(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-
-                                                            view.setAlpha(1);
-                                                            agendaListAdapter.clear();
-                                                            agendaListAdapter.notifyDataSetChanged();
-                                                            listView.setAdapter(agendaListAdapter);
-                                                        }
-                                                    });
+                                builder1.setPositiveButton("Sim",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
 
 
+                                                bookedList.get(0).deleteInBackground();
+
+                                                view.animate().setDuration(2000).alpha(0)
+                                                        .withEndAction(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+
+                                                                view.setAlpha(1);
+                                                                agendaListAdapter.clear();
+                                                                agendaListAdapter.notifyDataSetChanged();
+                                                                listView.setAdapter(agendaListAdapter);
+                                                            }
+                                                        });
 
 
-                                        }
-                                    });
-                            builder1.setCancelable(true);
-                            builder1.setNegativeButton("Cancelar",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    });
+                                            }
+                                        });
+                                builder1.setCancelable(true);
+                                builder1.setNegativeButton("Cancelar",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
 
-                            AlertDialog alert11 = builder1.create();
-                            alert11.show();
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
 
 
+                            } else {
 
-                        } else {
-
+                            }
                         }
 
 
-                    }
 
+                    });
 
+                // ADMIN ENTER DETAIL VIEW
+                } else {
 
-                });
+                    Intent intent = new Intent(agenda.this,LoginActivity.class);
+                    startActivity(intent);
 
-
-
-
-
+                }
 
             }
 

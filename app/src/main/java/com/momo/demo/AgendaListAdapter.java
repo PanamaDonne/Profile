@@ -43,7 +43,15 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
             public ParseQuery create() {
 
                 ParseQuery query = new ParseQuery("bookings_tennis");
-                query.whereEqualTo("bookedBy", ParseUser.getCurrentUser());
+
+
+                // USER LIST ONLY CURRENT USER AGENDA / ADMIN ALL USERS AGENDAS
+                if(!ParseUser.getCurrentUser().getUsername().equals("admin")) {
+
+                    query.whereEqualTo("bookedBy", ParseUser.getCurrentUser());
+
+                }
+
                 query.orderByAscending("date");
 
 
@@ -78,7 +86,15 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
         periodTextView.setText(useragenda.getPeriod());
 
         TextView userTextView = (TextView) v.findViewById(R.id.textUserName);
-        userTextView.setText(useragenda.getUser());
+
+        // ADMIN PERMISSION
+        if(ParseUser.getCurrentUser().getUsername().equals("admin")) {
+
+            userTextView.setText(useragenda.getUser());
+
+        }
+
+
 
 
 

@@ -53,15 +53,13 @@
             android:label="@string/title_activity_map" >
         </activity>
         <activity
-            android:name=".delivery"
-            android:label="@string/title_activity_delivery" >
-        </activity>
-        <activity
             android:name=".agenda"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_agenda" >
         </activity>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login" >
         </activity>
     </application>
