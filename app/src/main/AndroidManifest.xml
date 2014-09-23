@@ -54,18 +54,24 @@
         </activity>
         <activity
             android:name=".agenda"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_agenda" >
+            android:label="@string/title_activity_agenda"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AgendaDetail"
+            android:label="@string/title_activity_agenda_detail" >
         </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"

@@ -3,8 +3,15 @@ package com.momo.demo;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
@@ -16,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
+import java.util.TimeZone;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -46,6 +54,9 @@ public class schedule extends Activity {
     private String yearString;
     private Formatter fmt;
     private String currentMonth;
+    private UserAgenda useragenda;
+    private Period period;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +65,8 @@ public class schedule extends Activity {
         setContentView(R.layout.activity_schedule);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         listView = (ListView) findViewById(R.id.listView);
+
+        context = getApplicationContext();
 
 
         // ------------------------------------ Subclass of ParseQueryAdapter ------------------------
@@ -65,10 +78,7 @@ public class schedule extends Activity {
         parse();
 
 
-
         listView.setAdapter(periodAdapter);
-
-
 
 
         fmt = new Formatter();
@@ -155,6 +165,25 @@ public class schedule extends Activity {
 
 
                                                 ParseObject bookings = ParseObject.create("bookings_tennis");
+
+
+                                                ContentResolver cr = getContentResolver();
+                                                ContentValues values = new ContentValues();
+
+                                                Calendar beginTime = Calendar.getInstance();
+                                                beginTime.set(2014,Calendar.SEPTEMBER,24,21,00,00);
+
+                                                Calendar endTime = Calendar.getInstance();
+                                                endTime.set(2013,Calendar.SEPTEMBER,24,22,00,00);
+
+                                                values.put(CalendarContract.Events.DTSTART, beginTime.getTimeInMillis());
+                                                values.put(CalendarContract.Events.DTEND, endTime.getTimeInMillis());
+                                                values.put(CalendarContract.Events.TITLE, "TÊNIS");
+                                                values.put(CalendarContract.Events.DESCRIPTION, "Serido 106");
+                                                values.put(CalendarContract.Events.CALENDAR_ID, 1);
+                                                values.put(CalendarContract.Events.EVENT_TIMEZONE, "BRASILIA");
+
+                                                Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
 
 
 
@@ -345,6 +374,12 @@ public class schedule extends Activity {
 
                                                 }
 
+
+
+
+
+
+
                                                 Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
                                                         Toast.LENGTH_LONG).show();
 
@@ -368,10 +403,6 @@ public class schedule extends Activity {
                         }
                     }
                 });
-
-
-
-
 
             }
 
@@ -488,6 +519,7 @@ public class schedule extends Activity {
 
 
 
+
             }
         });
 
@@ -504,10 +536,6 @@ public class schedule extends Activity {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
 
     }
-
-
-
-
 
 
 }

@@ -71,6 +71,9 @@ public class agenda extends Activity {
                 TextView textView2 = (TextView) view.findViewById(R.id.textAgenda2);
                 CharSequence period = textView2.getText();
 
+                TextView textView3 = (TextView) view.findViewById(R.id.textUserName);
+                CharSequence userName = textView3.getText();
+
                 Log.i(TAG, "LIST TEXT: " + period + " & " + date);
 
                 // USER DELETE PERIOD WHEN CLICK ROW
@@ -139,7 +142,10 @@ public class agenda extends Activity {
                 // ADMIN ENTER DETAIL VIEW
                 } else {
 
-                    Intent intent = new Intent(agenda.this,LoginActivity.class);
+                    Intent intent = new Intent(agenda.this,AgendaDetail.class);
+                    intent.putExtra("date", date);
+                    intent.putExtra("period", period);
+                    intent.putExtra("username", userName);
                     startActivity(intent);
 
                 }

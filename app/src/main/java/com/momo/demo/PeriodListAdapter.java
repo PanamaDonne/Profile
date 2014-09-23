@@ -37,6 +37,7 @@ public class PeriodListAdapter extends ParseQueryAdapter<Period> {
 
                 ParseQuery query = new ParseQuery("periods");
                 query.orderByAscending("order");
+                query.include("booked");
                 return query;
 
 
@@ -53,7 +54,6 @@ public class PeriodListAdapter extends ParseQueryAdapter<Period> {
         }
 
         super.getItemView(period, v, parent);
-
 
 
         titleTextView = (TextView) v.findViewById(R.id.text1);

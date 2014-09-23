@@ -22,5 +22,9 @@
     <string name="LoginBtn">Login</string>
     <string name="LogoutBtn">Log Out</string>
     <string name="booked">Booked - Want to get in standby line?</string>
+    <string name="title_activity_agenda_detail">AgendaDetail</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_agenda_list">Items</string>
+    <string name="title_agenda_detail">agenda Detail</string>
 
 </resources>

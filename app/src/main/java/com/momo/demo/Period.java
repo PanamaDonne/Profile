@@ -20,9 +20,6 @@ import java.util.List;
 @ParseClassName("periods")
 public class Period extends ParseObject {
 
-    UserAgenda useragenda;
-
-
 
     public Period() {
         // A default constructor is required.

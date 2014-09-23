@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.momo.demo.AgendaDetail">
+
+
+    <TextView
+        android:id="@+id/aula"
+        android:text="TÊNIS"
+        android:textSize="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"/>
+    <TextView
+        android:id="@+id/userText"
+        android:textSize="22dp"
+        android:layout_toRightOf="@+id/aula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"/>
+    <TextView
+        android:id="@+id/dateText"
+        android:textSize="16dp"
+        android:layout_below="@+id/aula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/periodText"
+        android:textSize="16dp"
+        android:layout_below="@+id/aula"
+        android:layout_toRightOf="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"/>
+
+    <TextView
+        android:layout_marginTop="30dip"
+        android:id="@+id/standByText"
+        android:textSize="20dp"
+        android:text="LISTA DE ESPERA"
+        android:layout_below="@+id/periodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="10dip"
+        android:id="@+id/standBy1"
+        android:textSize="18dp"
+        android:text="STAND BY USER 1"
+        android:layout_below="@+id/standByText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="10dip"
+        android:id="@+id/standBy2"
+        android:textSize="18dp"
+        android:text="STAND BY USER 2"
+        android:layout_below="@+id/standBy1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="10dip"
+        android:id="@+id/standBy3"
+        android:textSize="18dp"
+        android:text="STAND BY USER 3"
+        android:layout_below="@+id/standBy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_marginTop="40dip"
+        android:id="@+id/deleteButton"
+        android:text="DELETE PERIOD"
+        android:layout_below="@+id/standBy3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>

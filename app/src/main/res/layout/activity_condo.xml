@@ -18,7 +18,11 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:text="MINHA AGENDA"
-            android:drawableTop="@drawable/calendar"/>
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:background="#DFE2D6"
+            />
+
 
         <Button
             android:id="@+id/button2"
@@ -26,7 +30,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:text="TENIS"
-            android:drawableTop="@drawable/booking"/>
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:background="#F2F2E1"
+            />
     </TableRow>
 
     <TableRow
@@ -40,8 +47,11 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="LOGOUT (ONLY FOR TEST)"
-            android:drawableTop="@drawable/mural"/>
+            android:text="MASSAGEM (LOG OUT)"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:background="#F2F2E1"
+           />
 
         <Button
             android:id="@+id/button4"
@@ -49,7 +59,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:text="ACADEMIA"
-            android:drawableTop="@drawable/sindico"/>
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:background="#DFE2D6"
+            />
     </TableRow>
 
 
