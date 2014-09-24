@@ -2,6 +2,7 @@ package com.momo.demo;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -53,7 +54,6 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
                 }
 
                 query.orderByAscending("date");
-
 
 
 

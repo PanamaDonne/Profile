@@ -42,5 +42,4 @@ public class UserAgenda extends ParseObject {
         return bookedBy + (getString("username"));
     }
 
-
 }

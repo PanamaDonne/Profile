@@ -53,10 +53,13 @@ public class schedule extends Activity {
     private String currentDate;
     private String yearString;
     private Formatter fmt;
+    private Formatter fmtDay;
     private String currentMonth;
+    private String currentDay;
     private UserAgenda useragenda;
     private Period period;
     Context context;
+    private int rowPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +87,18 @@ public class schedule extends Activity {
         fmt = new Formatter();
         Calendar cal = Calendar.getInstance();
 
+        // CURRENT MONTH
         fmt = new Formatter();
         fmt.format("%tB", cal);
         currentMonth = fmt.toString().toUpperCase();
 
+        // CURRENT DAY
+        fmtDay = new Formatter();
+        fmtDay.format("%te", cal);
+        currentDay = fmtDay.toString();
 
-        Log.i(TAG, "TIME STAMP: " + currentMonth);
+
+        Log.i(TAG, "TIME STAMP: " + currentDay);
 
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
 
@@ -103,20 +112,25 @@ public class schedule extends Activity {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
 
+
+
                 Log.i(TAG, "MONTH: " + monthString + " = " + currentMonth);
 
+                rowPosition = position;
 
 
                 // -------------------- Book &  Also Check if user already booked that day ---------------------------
                 final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+
                 query.whereEqualTo("date", date);
                 query.whereEqualTo("bookedBy", user);
+
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> bookedList, ParseException e) {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
 
-                            // ---------------------------- APTO USER ------------------------------------------------
+                            // ---------------------------- APTO USER ALREADY BOOKED THAT DAY ------------------------------------------------
                             if (((bookedList.size() > 0)) && (user.getUsername().equals("test_user1"))) {
 
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
@@ -134,268 +148,40 @@ public class schedule extends Activity {
                                 alert11.show();
                             }
 
-                            // APTO USERS BOOKING PERIOD 1month - 5 days
+                            // TODO APTO USERS BOOKING PERIOD 1month - 5 days
                             else if ((user.getUsername().equals("test_user1")) && (!currentMonth.equals(monthString))) {
 
-                                AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                                builder1.setMessage("You cannot book this period.");
+                                if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")  ) {
 
-                                builder1.setPositiveButton("OK",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
+                                    Log.i(TAG, "YOU CAN BOOK!");
+                                    bookPeriod();
 
-                                            }
-                                        });
-                                builder1.setCancelable(false);
+                                } else {
 
-                                AlertDialog alert11 = builder1.create();
-                                alert11.show();
+                                    AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                                    builder1.setMessage("You cannot book this period.");
+
+                                    builder1.setPositiveButton("OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+
+                                                }
+                                            });
+                                    builder1.setCancelable(false);
+
+                                    AlertDialog alert11 = builder1.create();
+                                    alert11.show();
+                                }
+
 
                             }
+
+
 
                             // ------------------------- ADMIN USER & APTO USERS WITH RIGHT CRITERIA--------------------------------------------------
                             else {
 
-                                AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                                builder1.setMessage("Você quer agendar este horario?");
-
-                                builder1.setPositiveButton("Sim",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-
-
-                                                ParseObject bookings = ParseObject.create("bookings_tennis");
-
-
-                                                ContentResolver cr = getContentResolver();
-                                                ContentValues values = new ContentValues();
-
-                                                Calendar beginTime = Calendar.getInstance();
-                                                beginTime.set(2014,Calendar.SEPTEMBER,24,21,00,00);
-
-                                                Calendar endTime = Calendar.getInstance();
-                                                endTime.set(2013,Calendar.SEPTEMBER,24,22,00,00);
-
-                                                values.put(CalendarContract.Events.DTSTART, beginTime.getTimeInMillis());
-                                                values.put(CalendarContract.Events.DTEND, endTime.getTimeInMillis());
-                                                values.put(CalendarContract.Events.TITLE, "TÊNIS");
-                                                values.put(CalendarContract.Events.DESCRIPTION, "Serido 106");
-                                                values.put(CalendarContract.Events.CALENDAR_ID, 1);
-                                                values.put(CalendarContract.Events.EVENT_TIMEZONE, "BRASILIA");
-
-                                                Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
-
-
-
-                                                switch (position) {
-
-
-                                                    case 0:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "07:00 - 08:00");
-                                                        bookings.put("position", 0);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-
-                                                    }
-                                                    break;
-                                                    case 1:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "08:00 - 09:00" );
-                                                        bookings.put("position", 1);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 2:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "09:00 - 10:00" );
-                                                        bookings.put("position", 2);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 3:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "10:00 - 11:00" );
-                                                        bookings.put("position", 3);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 4:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "11:00 - 12:00" );
-                                                        bookings.put("position", 4);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 5:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "12:00 - 13:00" );
-                                                        bookings.put("position", 5);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 6:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "13:00 - 14:00" );
-                                                        bookings.put("position", 6);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 7:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "14:00 - 15:00" );
-                                                        bookings.put("position", 7);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 8:  {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "15:00 - 16:00" );
-                                                        bookings.put("position", 8);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 9: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "16:00 - 17:00" );
-                                                        bookings.put("position", 9);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 10: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "17:00 - 18:00" );
-                                                        bookings.put("position", 10);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 11: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "18:00 - 19:00" );
-                                                        bookings.put("position", 11);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 12: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "19:00 - 20:00" );
-                                                        bookings.put("booked", true);
-                                                        bookings.put("position", 12);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 13: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "20:00 - 21:00" );
-                                                        bookings.put("position", 13);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-                                                    case 14: {
-
-                                                        bookings.put("date", date);
-                                                        bookings.put("periods", "21:00 - 22:00" );
-                                                        bookings.put("position", 14);
-                                                        bookings.put("booked", true);
-                                                        bookings.put("bookedBy", ParseUser.getCurrentUser());
-                                                        bookings.put("username", ParseUser.getCurrentUser().getUsername());
-                                                        bookings.saveInBackground();
-
-                                                    }
-                                                    break;
-
-                                                }
-
-
-
-
-
-
-
-                                                Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
-                                                        Toast.LENGTH_LONG).show();
-
-                                            }
-                                        });
-                                builder1.setCancelable(true);
-                                builder1.setNegativeButton("Cancelar",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                dialog.cancel();
-                                            }
-                                        });
-
-                                AlertDialog alert11 = builder1.create();
-                                alert11.show();
-
+                                bookPeriod();
                             }
 
                         } else {
@@ -515,11 +301,6 @@ public class schedule extends Activity {
                 text.setText(date);
 
 
-
-
-
-
-
             }
         });
 
@@ -536,6 +317,233 @@ public class schedule extends Activity {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
 
     }
+
+
+    void bookPeriod () {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+        builder1.setMessage("Você quer agendar este horario?");
+
+        builder1.setPositiveButton("Sim",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+
+                        ParseObject bookings = ParseObject.create("bookings_tennis");
+
+
+
+                        switch (rowPosition) {
+
+
+                            case 0:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "07:00 - 08:00");
+                                bookings.put("position", 0);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+
+                            }
+                            break;
+                            case 1:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "08:00 - 09:00" );
+                                bookings.put("position", 1);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 2:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "09:00 - 10:00" );
+                                bookings.put("position", 2);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 3:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "10:00 - 11:00" );
+                                bookings.put("position", 3);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 4:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "11:00 - 12:00" );
+                                bookings.put("position", 4);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 5:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "12:00 - 13:00" );
+                                bookings.put("position", 5);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 6:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "13:00 - 14:00" );
+                                bookings.put("position", 6);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 7:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "14:00 - 15:00" );
+                                bookings.put("position", 7);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 8:  {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "15:00 - 16:00" );
+                                bookings.put("position", 8);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 9: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "16:00 - 17:00" );
+                                bookings.put("position", 9);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 10: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "17:00 - 18:00" );
+                                bookings.put("position", 10);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 11: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "18:00 - 19:00" );
+                                bookings.put("position", 11);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 12: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "19:00 - 20:00" );
+                                bookings.put("booked", true);
+                                bookings.put("position", 12);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 13: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "20:00 - 21:00" );
+                                bookings.put("position", 13);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+                            case 14: {
+
+                                bookings.put("date", date);
+                                bookings.put("periods", "21:00 - 22:00" );
+                                bookings.put("position", 14);
+                                bookings.put("booked", true);
+                                bookings.put("bookedBy", ParseUser.getCurrentUser());
+                                bookings.put("username", ParseUser.getCurrentUser().getUsername());
+                                bookings.saveInBackground();
+
+                            }
+                            break;
+
+                        }
+
+
+
+
+
+
+
+                        Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
+                                Toast.LENGTH_LONG).show();
+
+                    }
+                });
+        builder1.setCancelable(true);
+        builder1.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+
 
 
 }
