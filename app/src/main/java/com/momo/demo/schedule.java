@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
@@ -56,8 +57,6 @@ public class schedule extends Activity {
     private Formatter fmtDay;
     private String currentMonth;
     private String currentDay;
-    private UserAgenda useragenda;
-    private Period period;
     Context context;
     private int rowPosition;
 
@@ -107,34 +106,40 @@ public class schedule extends Activity {
         text.setText(currentDate);
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
-
 
 
                 Log.i(TAG, "MONTH: " + monthString + " = " + currentMonth);
 
                 rowPosition = position;
 
+                view.setSelected(true);
 
-                // -------------------- Book &  Also Check if user already booked that day ---------------------------
+
+                TextView textViewPeriods = (TextView) view.findViewById(R.id.text1);
+                final CharSequence periods = textViewPeriods.getText();
+
+
+                // -------------------- Book &  TODO Also Check if user already booked that day ---------------------------
                 final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
                 query.whereEqualTo("date", date);
-                query.whereEqualTo("bookedBy", user);
+                //query.whereEqualTo("bookedBy", user);
+                query.whereEqualTo("periods", periods);
+
 
                 query.findInBackground(new FindCallback<ParseObject>() {
                     public void done(List<ParseObject> bookedList, ParseException e) {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
 
-                            // ---------------------------- APTO USER ALREADY BOOKED THAT DAY ------------------------------------------------
-                            if (((bookedList.size() > 0)) && (user.getUsername().equals("test_user1"))) {
+                            // ---------------------------- CHECK IF BOOKED ------------------------------------------------
+                            if (((bookedList.size() > 0))) {
 
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                                builder1.setMessage("You have already booked a period for this date.");
+                                builder1.setMessage("This period is already booked by another user.");
 
                                 builder1.setPositiveButton("OK",
                                         new DialogInterface.OnClickListener() {
@@ -148,10 +153,10 @@ public class schedule extends Activity {
                                 alert11.show();
                             }
 
-                            // TODO APTO USERS BOOKING PERIOD 1month - 5 days
+                            // APTO USERS BOOKING PERIOD 1month - 5 days
                             else if ((user.getUsername().equals("test_user1")) && (!currentMonth.equals(monthString))) {
 
-                                if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")  ) {
+                                if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")) {
 
                                     Log.i(TAG, "YOU CAN BOOK!");
                                     bookPeriod();
@@ -177,11 +182,11 @@ public class schedule extends Activity {
                             }
 
 
-
                             // ------------------------- ADMIN USER & APTO USERS WITH RIGHT CRITERIA--------------------------------------------------
                             else {
 
                                 bookPeriod();
+
                             }
 
                         } else {
@@ -190,10 +195,15 @@ public class schedule extends Activity {
                     }
                 });
 
+              
+
             }
 
 
         });
+
+
+
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -542,7 +552,6 @@ public class schedule extends Activity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
-
 
 
 

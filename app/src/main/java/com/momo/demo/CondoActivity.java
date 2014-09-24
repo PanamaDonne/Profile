@@ -13,8 +13,10 @@ import android.view.View.OnClickListener;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
+import com.parse.PushService;
 
 
 public class CondoActivity extends Activity {
@@ -34,6 +36,7 @@ public class CondoActivity extends Activity {
         setContentView(R.layout.activity_condo);
 
         checkLoggedIn();
+
 
 
         button1=(Button)findViewById(R.id.button1);
@@ -106,6 +109,10 @@ public class CondoActivity extends Activity {
 
         // Add your initialization code here
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
+
+        PushService.setDefaultPushCallback(this, agenda.class);
+        ParseAnalytics.trackAppOpened(getIntent());
+
 
 
         ParseUser.enableAutomaticUser();
