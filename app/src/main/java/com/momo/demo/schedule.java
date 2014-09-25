@@ -37,6 +37,7 @@ import android.widget.Toast;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 
 public class schedule extends Activity {
@@ -59,6 +60,8 @@ public class schedule extends Activity {
     private String currentDay;
     Context context;
     private int rowPosition;
+    private CharSequence periods;
+    private String objectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,10 @@ public class schedule extends Activity {
         currentDay = fmtDay.toString();
 
 
+
+
+
+
         Log.i(TAG, "TIME STAMP: " + currentDay);
 
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
@@ -117,70 +124,67 @@ public class schedule extends Activity {
 
                 view.setSelected(true);
 
-
                 TextView textViewPeriods = (TextView) view.findViewById(R.id.text1);
-                final CharSequence periods = textViewPeriods.getText();
+                periods = textViewPeriods.getText();
 
 
-                // -------------------- Book &  TODO Also Check if user already booked that day ---------------------------
+                // -------------------- BOOK & CHECK IF BOOKED BY ANYONE ---------------------------
                 final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
                 query.whereEqualTo("date", date);
-                //query.whereEqualTo("bookedBy", user);
                 query.whereEqualTo("periods", periods);
 
 
                 query.findInBackground(new FindCallback<ParseObject>() {
-                    public void done(List<ParseObject> bookedList, ParseException e) {
+                    public void done(final List<ParseObject> bookedList, ParseException e) {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
+
+
 
                             // ---------------------------- CHECK IF BOOKED ------------------------------------------------
                             if (((bookedList.size() > 0))) {
 
-                                AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                                builder1.setMessage("This period is already booked by another user.");
+                                objectId = bookedList.get(0).getObjectId();
 
-                                builder1.setPositiveButton("OK",
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                                builder1.setMessage("Este horário já foi agendado por outro usuário. Você quer entrar na ‘Lista de Espera’ para este horário?");
+
+
+
+                                // SET STANDBY USER
+                                builder1.setPositiveButton("SIM",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
 
+                                                ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+
+
+                                                query.getInBackground(objectId, new GetCallback<ParseObject>() {
+                                                    public void done(ParseObject bookings, ParseException e) {
+                                                        if (e == null) {
+
+                                                            bookings.put("standby1", user.getUsername());
+                                                            bookings.saveInBackground();
+                                                        }
+                                                    }
+                                                });
+
+
+
                                             }
                                         });
-                                builder1.setCancelable(false);
+                                builder1.setCancelable(true);
+                                builder1.setNegativeButton("CANCELAR",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                            }
+                                        });
 
                                 AlertDialog alert11 = builder1.create();
                                 alert11.show();
                             }
-
-                            // APTO USERS BOOKING PERIOD 1month - 5 days
-                            else if ((user.getUsername().equals("test_user1")) && (!currentMonth.equals(monthString))) {
-
-                                if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")) {
-
-                                    Log.i(TAG, "YOU CAN BOOK!");
-                                    bookPeriod();
-
-                                } else {
-
-                                    AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                                    builder1.setMessage("You cannot book this period.");
-
-                                    builder1.setPositiveButton("OK",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-
-                                                }
-                                            });
-                                    builder1.setCancelable(false);
-
-                                    AlertDialog alert11 = builder1.create();
-                                    alert11.show();
-                                }
-
-
-                            }
-
 
                             // ------------------------- ADMIN USER & APTO USERS WITH RIGHT CRITERIA--------------------------------------------------
                             else {
@@ -195,7 +199,7 @@ public class schedule extends Activity {
                     }
                 });
 
-              
+
 
             }
 
@@ -302,16 +306,20 @@ public class schedule extends Activity {
                     break;
 
 
+
+
                 }
 
                 date = day + " de " + monthString + " " + yearString;
-
                 Log.i(TAG, "DATE: " + date);
-
                 text.setText(date);
 
-
+                // CHECK BOOKING CRITERIA
+                checkBooking();
             }
+
+
+
         });
 
     }
@@ -326,6 +334,75 @@ public class schedule extends Activity {
     void parse() {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
 
+    }
+
+
+    // CHECK IF USER BOOKED THE DATE & IF ALLOWED TO BOOK THE PERIOD
+    void checkBooking() {
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+
+        query.whereEqualTo("date", date);
+        query.whereEqualTo("bookedBy", user);
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> bookedList, ParseException e) {
+                if (e == null) {
+                    Log.i(TAG, "FOUND: " + bookedList.size());
+
+                    // ---------------------------- CHECK IF USER ALREADY BOOKED - ADMIN CAN BOOK ------------------------------------------------
+                    if (((bookedList.size() > 0) && (!user.getUsername().equals("admin")))) {
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                        builder1.setMessage("You have already booked on this date.");
+
+                        builder1.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+                        builder1.setCancelable(false);
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+
+                    // APTO USERS BOOKING PERIOD 1month - 5 days - ADMIN CAN BOOK
+                    else if ((!user.getUsername().equals("admin")) && (!currentMonth.equals(monthString))) {
+
+                        if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")) {
+
+                            Log.i(TAG, "YOU CAN BOOK!");
+
+
+                        } else {
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                            builder1.setMessage("You cannot book this period.");
+
+                            builder1.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                        }
+                                    });
+                            builder1.setCancelable(false);
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
+                        }
+
+
+                    }
+                    else {
+                        //
+                    }
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
     }
 
 

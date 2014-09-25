@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -34,6 +35,7 @@ public class agenda extends Activity {
     private AgendaListAdapter agendaListAdapter;
     private String TAG;
     private ListView listView;
+    private String objectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +103,33 @@ public class agenda extends Activity {
                                             public void onClick(DialogInterface dialog, int id) {
 
 
-                                                bookedList.get(0).deleteInBackground();
+                                                // SET PERIOD TO STANDBY USER 1
+
+
+                                                objectId = bookedList.get(0).getObjectId();
+
+
+
+                                                ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
+
+                                                query.getInBackground(objectId, new GetCallback<ParseObject>() {
+                                                    public void done(ParseObject bookings, ParseException e) {
+                                                        if (e == null && (bookings.get("standby1") != null)) {
+
+                                                            bookings.put("Booked By", bookings.get("standby1"));
+                                                            bookings.put("username", bookings.get("standby1"));
+                                                            bookings.saveInBackground();
+                                                        }
+
+                                                        else {
+
+                                                            bookedList.get(0).deleteInBackground();
+                                                        }
+                                                    }
+                                                });
+
+
+
 
                                                 view.animate().setDuration(2000).alpha(0)
                                                         .withEndAction(new Runnable() {
