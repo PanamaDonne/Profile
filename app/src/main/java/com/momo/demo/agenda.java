@@ -104,11 +104,7 @@ public class agenda extends Activity {
 
 
                                                 // SET PERIOD TO STANDBY USER 1
-
-
                                                 objectId = bookedList.get(0).getObjectId();
-
-
 
                                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
@@ -116,33 +112,34 @@ public class agenda extends Activity {
                                                     public void done(ParseObject bookings, ParseException e) {
                                                         if (e == null && (bookings.get("standby1") != null)) {
 
-                                                            bookings.put("Booked By", bookings.get("standby1"));
-                                                            bookings.put("username", bookings.get("standby1"));
+
+                                                            bookings.put("bookedBy", bookings.get("standby1"));
+                                                            bookings.put("username", bookings.get("standby1username"));
                                                             bookings.saveInBackground();
+
+                                                            Log.i(TAG, "STAND BY USER: " + bookings.get("standby1"));
                                                         }
 
                                                         else {
 
                                                             bookedList.get(0).deleteInBackground();
+
+
                                                         }
+
+                                                        view.animate().setDuration(2000).alpha(0)
+                                                                .withEndAction(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+
+                                                                        view.setAlpha(1);
+                                                                        agendaListAdapter.clear();
+                                                                        agendaListAdapter.notifyDataSetChanged();
+                                                                        listView.setAdapter(agendaListAdapter);
+                                                                    }
+                                                                });
                                                     }
                                                 });
-
-
-
-
-                                                view.animate().setDuration(2000).alpha(0)
-                                                        .withEndAction(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-
-                                                                view.setAlpha(1);
-                                                                agendaListAdapter.clear();
-                                                                agendaListAdapter.notifyDataSetChanged();
-                                                                listView.setAdapter(agendaListAdapter);
-                                                            }
-                                                        });
-
 
                                             }
                                         });

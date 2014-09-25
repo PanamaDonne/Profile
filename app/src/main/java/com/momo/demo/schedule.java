@@ -164,7 +164,8 @@ public class schedule extends Activity {
                                                     public void done(ParseObject bookings, ParseException e) {
                                                         if (e == null) {
 
-                                                            bookings.put("standby1", user.getUsername());
+                                                            bookings.put("standby1", user);
+                                                            bookings.put("standby1username", user.getUsername());
                                                             bookings.saveInBackground();
                                                         }
                                                     }
