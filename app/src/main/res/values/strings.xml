@@ -4,27 +4,27 @@
     <string name="app_name">MoMo - mobile solutions</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_condo">Condomínio Seridó 106</string>
-    <string name="title_activity_schedule">SCHEDULE</string>
+    <string name="title_activity_schedule">Calendário</string>
     <string name="title_activity_sauna">SAUNA</string>
     <string name="title_activity_classes">CLASSES</string>
     <string name="title_activity_report">REPORT A PROBLEM</string>
     <string name="title_activity_mural">mural</string>
-    <string name="title_agenda">Minha Agenda</string>
+    <string name="title_agenda">Agenda</string>
     <string name="title_activity_sindico">sindico</string>
     <string name="title_activity_portaria">portaria</string>
     <string name="title_activity_my_condo">myCondo</string>
     <string name="title_activity_map">map</string>
     <string name="title_activity_delivery">delivery</string>
-    <string name="title_activity_agenda">agenda</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_agenda">Agenda</string>
+    <string name="title_activity_login">Por favor faz login</string>
     <string name="Username">Usuário</string>
     <string name="Password">Senha</string>
     <string name="LoginBtn">Login</string>
     <string name="LogoutBtn">Log Out</string>
     <string name="booked">Booked - Want to get in standby line?</string>
-    <string name="title_activity_agenda_detail">AgendaDetail</string>
+    <string name="title_activity_agenda_detail">Agenda</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_agenda_list">Items</string>
-    <string name="title_agenda_detail">agenda Detail</string>
+    <string name="title_agenda_detail">Agenda Detalhes</string>
 
 </resources>

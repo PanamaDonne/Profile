@@ -62,6 +62,8 @@ public class schedule extends Activity {
     private int rowPosition;
     private CharSequence periods;
     private String objectId;
+    private boolean dateAlreadyBooked;
+    private View overlayView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +72,15 @@ public class schedule extends Activity {
         setContentView(R.layout.activity_schedule);
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         listView = (ListView) findViewById(R.id.listView);
+        overlayView = (View) findViewById(R.id.overlayView);
 
         context = getApplicationContext();
 
 
         // ------------------------------------ Subclass of ParseQueryAdapter ------------------------
         periodAdapter = new PeriodListAdapter(this);
+
+
 
 
         // ----------------------------------- INIT PARSE.COM ----------------------------------------
@@ -216,6 +221,8 @@ public class schedule extends Activity {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
 
+                overlayView.setVisibility(View.GONE);
+
 
 
                 StringBuilder sb = new StringBuilder();
@@ -317,6 +324,9 @@ public class schedule extends Activity {
 
                 // CHECK BOOKING CRITERIA
                 checkBooking();
+
+
+
             }
 
 
@@ -353,12 +363,16 @@ public class schedule extends Activity {
                     // ---------------------------- CHECK IF USER ALREADY BOOKED - ADMIN CAN BOOK ------------------------------------------------
                     if (((bookedList.size() > 0) && (!user.getUsername().equals("admin")))) {
 
+
+
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                         builder1.setMessage("You have already booked on this date.");
 
                         builder1.setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+
+                                        overlayView.setVisibility(View.VISIBLE);
 
                                     }
                                 });
@@ -396,7 +410,7 @@ public class schedule extends Activity {
 
                     }
                     else {
-                        //
+
                     }
 
                 } else {

@@ -3,7 +3,7 @@
     android:id="@+id/tableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/background">
 
 
     <TableRow
@@ -17,27 +17,49 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MINHA AGENDA"
+            android:text="Minha Agenda"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:background="#DFE2D6"
+            android:background="#AAF2F2E1"
             />
 
+    </TableRow>
+
+    <View
+        android:layout_height="1dip"
+        android:layout_width="fill_parent"
+        android:background="#FFFFFF"
+        />
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="TENIS"
+            android:text="Tênis"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:background="#F2F2E1"
-            />
+            android:background="#AAF2F2E1"
+           />
+
     </TableRow>
 
+    <View
+        android:layout_height="1dip"
+        android:layout_width="fill_parent"
+        android:background="#FFFFFF"
+        />
+
     <TableRow
-        android:id="@+id/tableRow2"
+        android:id="@+id/tableRow3"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
@@ -47,23 +69,42 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="MASSAGEM (LOG OUT)"
+            android:text="Massagem"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#000000"
-            android:background="#F2F2E1"
-           />
+            android:background="#AAF2F2E1"
+            />
+
+    </TableRow>
+
+    <View
+        android:layout_height="1dip"
+        android:layout_width="fill_parent"
+        android:background="#FFFFFF"
+        />
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
         <Button
             android:id="@+id/button4"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="ACADEMIA"
+            android:text="Logout"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#000000"
-            android:background="#DFE2D6"
+            android:textColor="#F9B741"
+            android:background="#AAF2F2E1"
             />
+
     </TableRow>
+
+
 
 
 </TableLayout>

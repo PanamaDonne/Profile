@@ -13,8 +13,8 @@
         android:layout_weight="1"
         android:minHeight="100dip"
         android:dividerHeight="1dip"
-        android:background="#AAFFFFFF"
-        android:divider="@android:color/transparent"/>
+        android:background="#F2F2E1"
+        android:divider="@android:color/white"/>
 
 
 

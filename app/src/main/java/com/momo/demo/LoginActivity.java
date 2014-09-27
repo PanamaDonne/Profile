@@ -3,6 +3,7 @@ package com.momo.demo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -10,7 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
+import com.parse.ParseRole;
 import com.parse.ParseUser;
 
 
@@ -21,10 +24,13 @@ public class LoginActivity extends Activity {
     String passwordtxt;
     EditText password;
     EditText username;
+    private String TAG;
 
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        TAG = "loginActivity";
         // Get the view from main.xml
         setContentView(R.layout.activity_login);
         // Locate EditTexts in main.xml
@@ -49,9 +55,22 @@ public class LoginActivity extends Activity {
                             public void done(ParseUser user, ParseException e) {
 
 
-
-
                                 if (user != null) {
+
+
+                                    if (user.getUsername().equals("admin")) {
+
+                                        ParseACL roleACL = new ParseACL();
+                                        roleACL.setPublicReadAccess(true);
+                                        roleACL.setPublicWriteAccess(true);
+                                        ParseRole role = new ParseRole("Administrator", roleACL);
+                                        role.saveInBackground();
+
+                                        Log.i(TAG,"ADMIN LOGGED IN");
+
+                                    }
+
+
 
                                     Intent intent = new Intent(
                                             LoginActivity.this,

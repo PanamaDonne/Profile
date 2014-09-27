@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
@@ -74,18 +75,18 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
 
         super.getItemView(useragenda, v, parent);
 
-
+        ImageView image = (ImageView) v.findViewById(R.id.image);
 
         TextView titleTextView = (TextView) v.findViewById(R.id.textAgenda);
         titleTextView.setText(useragenda.getTitle());
 
-        TextView classTextView = (TextView) v.findViewById(R.id.textClass);
-        titleTextView.setText(useragenda.getTitle());
+        TextView classTextView = (TextView) v.findViewById(R.id.classCat);
+        classTextView.setText("Tênis");
 
         TextView periodTextView = (TextView) v.findViewById(R.id.textAgenda2);
         periodTextView.setText(useragenda.getPeriod());
 
-        TextView userTextView = (TextView) v.findViewById(R.id.textUserName);
+        TextView userTextView = (TextView) v.findViewById(R.id.textAgenda);
 
         // ADMIN PERMISSION
         if(ParseUser.getCurrentUser().getUsername().equals("admin")) {
@@ -93,13 +94,6 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
             userTextView.setText(useragenda.getUser());
 
         }
-
-
-
-
-
-
-
 
         return v;
     }

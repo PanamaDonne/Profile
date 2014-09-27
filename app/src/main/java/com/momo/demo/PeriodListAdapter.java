@@ -1,12 +1,15 @@
 package com.momo.demo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -25,7 +28,7 @@ import java.util.List;
 public class PeriodListAdapter extends ParseQueryAdapter<Period> {
 
     private String TAG = "PeriodListAdapter";
-    private TextView bookedtextView;
+    public TextView bookedtextView;
     private TextView titleTextView;
 
 
@@ -47,7 +50,7 @@ public class PeriodListAdapter extends ParseQueryAdapter<Period> {
     }
 
     @Override
-    public View getItemView(Period period, View v, ViewGroup parent) {
+    public View getItemView(final Period period, View v, ViewGroup parent) {
 
         if (v == null) {
             v = View.inflate(getContext(), R.layout.periodlist, null);

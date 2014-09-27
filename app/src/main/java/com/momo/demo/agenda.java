@@ -57,10 +57,6 @@ public class agenda extends Activity {
 
 
 
-
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(final AdapterView<?> parent, final View view,
                                     final int position, long id) {
@@ -73,7 +69,8 @@ public class agenda extends Activity {
                 TextView textView2 = (TextView) view.findViewById(R.id.textAgenda2);
                 CharSequence period = textView2.getText();
 
-                TextView textView3 = (TextView) view.findViewById(R.id.textUserName);
+                //TODO GET USERNAME
+                TextView textView3 = (TextView) view.findViewById(R.id.textAgenda);
                 CharSequence userName = textView3.getText();
 
                 Log.i(TAG, "LIST TEXT: " + period + " & " + date);
