@@ -3,11 +3,13 @@ package com.momo.demo;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,7 +26,10 @@ public class AgendaDetail extends Activity {
     private TextView date;
     private TextView period;
     private TextView user;
+    private String userName;
     private Button deleteButton;
+    private Button sendButton;
+    private UserAgenda useragenda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class AgendaDetail extends Activity {
         period.setText(getIntent().getStringExtra("period"));
 
         user = (TextView)findViewById(R.id.userText);
-        user.setText(getIntent().getStringExtra("username").replace("Booked by: ", ""));
+        user.setText("Agendado - " + ((getIntent().getStringExtra("username"))));
 
         deleteButton = (Button)findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +57,8 @@ public class AgendaDetail extends Activity {
                 final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
                 Log.i(TAG, "CLICKED");
+
+
 
                 query.whereEqualTo("periods", period.getText());
                 query.whereEqualTo("date", date.getText());
@@ -69,6 +76,9 @@ public class AgendaDetail extends Activity {
 
 
                                             bookedList.get(0).deleteInBackground();
+
+                                            Intent intent = new Intent(AgendaDetail.this,agenda.class);
+                                            startActivity(intent);
 
                                         }
                                     });
@@ -91,6 +101,26 @@ public class AgendaDetail extends Activity {
             }
 
         });
+
+
+
+        sendButton = (Button) findViewById(R.id.sendButton);
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(
+                        getApplicationContext(),
+                        "O mensagem foi enviada para " + (getIntent().getStringExtra("username")),
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+
     }
 
 

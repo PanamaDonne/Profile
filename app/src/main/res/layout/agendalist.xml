@@ -44,6 +44,7 @@
         android:textColor="#F9B741"
         android:textStyle="bold"/>
 
+
     <ImageView
         android:id="@+id/garbage"
         android:layout_width="wrap_content"
@@ -52,6 +53,20 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:src="@drawable/icon_garbage" />
+
+    <TextView
+        android:id="@+id/userNameText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/classCat"
+        android:layout_below="@id/textAgenda2"
+        android:layout_marginLeft="20dp"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:textStyle="normal"/>
+
+
+
 
 
 

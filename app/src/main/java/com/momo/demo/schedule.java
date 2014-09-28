@@ -122,6 +122,8 @@ public class schedule extends Activity {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
 
+                dateAlreadyBooked = false;
+
 
                 Log.i(TAG, "MONTH: " + monthString + " = " + currentMonth);
 
@@ -196,6 +198,8 @@ public class schedule extends Activity {
                             else {
 
                                 bookPeriod();
+
+
 
                             }
 
@@ -302,7 +306,7 @@ public class schedule extends Activity {
                     break;
                     case 10: {
 
-                        monthString = "NOVEMRBO";
+                        monthString = "NOVEMBRO";
 
                     }
                     break;
@@ -366,7 +370,7 @@ public class schedule extends Activity {
 
 
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                        builder1.setMessage("You have already booked on this date.");
+                        builder1.setMessage("Você já agendou um período para esta data.");
 
                         builder1.setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
@@ -383,7 +387,7 @@ public class schedule extends Activity {
                     }
 
                     // APTO USERS BOOKING PERIOD 1month - 5 days - ADMIN CAN BOOK
-                    else if ((!user.getUsername().equals("admin")) && (!currentMonth.equals(monthString))) {
+                    else if ((!user.getUsername().equals("admin")) && (currentMonth.equals(monthString))) {
 
                         if (currentDay.equals("24") || currentDay.equals("25") || currentDay.equals("26") || currentDay.equals("27") || currentDay.equals("28") || currentDay.equals("29") || currentDay.equals("30") || currentDay.equals("31")) {
 
@@ -393,7 +397,7 @@ public class schedule extends Activity {
                         } else {
 
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
-                            builder1.setMessage("You cannot book this period.");
+                            builder1.setMessage("Não é permitido agendar esta data.");
 
                             builder1.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
@@ -411,6 +415,24 @@ public class schedule extends Activity {
                     }
                     else {
 
+                        if((!monthString.equals("OUTUBRO")) && (!user.getUsername().equals("admin"))) {
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
+                            builder1.setMessage("Não é permitido agendar esta data.");
+
+                            builder1.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                        }
+                                    });
+                            builder1.setCancelable(false);
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
+
+                        }
+
                     }
 
                 } else {
@@ -426,9 +448,14 @@ public class schedule extends Activity {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
         builder1.setMessage("Você quer agendar este horario?");
 
+
+
+
         builder1.setPositiveButton("Sim",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+
 
 
                         ParseObject bookings = ParseObject.create("bookings_tennis");
@@ -620,12 +647,13 @@ public class schedule extends Activity {
                             }
                             break;
 
+
+
+
                         }
 
 
-
-
-
+                        dateAlreadyBooked = true;
 
 
                         Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",

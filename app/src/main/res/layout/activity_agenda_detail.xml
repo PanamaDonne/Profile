@@ -1,88 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.momo.demo.AgendaDetail">
+    android:background="#ffffff">
 
 
-    <TextView
-        android:id="@+id/aula"
-        android:text="TÊNIS"
-        android:textSize="22dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dip"/>
-    <TextView
-        android:id="@+id/userText"
-        android:textSize="22dp"
-        android:layout_toRightOf="@+id/aula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dip"/>
-    <TextView
-        android:id="@+id/dateText"
-        android:textSize="16dp"
-        android:layout_below="@+id/aula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TableRow
+        android:id="@+id/tableRowDetail1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/periodText"
-        android:textSize="16dp"
-        android:layout_below="@+id/aula"
-        android:layout_toRightOf="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dip"/>
+        <Button
+            android:id="@+id/dateText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            android:drawableLeft="@drawable/icon_agenda"
+            android:textColor="#000000"
+            android:background="#DFE2D6"
+            />
 
-    <TextView
-        android:layout_marginTop="30dip"
-        android:id="@+id/standByText"
-        android:textSize="20dp"
-        android:text="LISTA DE ESPERA"
-        android:layout_below="@+id/periodText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    </TableRow>
 
-    <TextView
-        android:layout_marginTop="10dip"
-        android:id="@+id/standBy1"
-        android:textSize="18dp"
-        android:text="STAND BY USER 1"
-        android:layout_below="@+id/standByText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <TableRow
+        android:id="@+id/tableRowDetail2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:layout_marginTop="10dip"
-        android:id="@+id/standBy2"
-        android:textSize="18dp"
-        android:text="STAND BY USER 2"
-        android:layout_below="@+id/standBy1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/periodText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:background="#DFE2D6"
+            />
 
-    <TextView
-        android:layout_marginTop="10dip"
-        android:id="@+id/standBy3"
-        android:textSize="18dp"
-        android:text="STAND BY USER 3"
-        android:layout_below="@+id/standBy2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    </TableRow>
 
-    <Button
-        android:layout_marginTop="40dip"
-        android:id="@+id/deleteButton"
-        android:text="DELETE PERIOD"
-        android:layout_below="@+id/standBy3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <TableRow
+        android:id="@+id/tableRowDetail3"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/userText"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:background="#DFE2D6"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRowDetail4"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="DELETAR AGENDAMENTO"
+            android:drawableLeft="@drawable/icon_garbage"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#F9B741"
+            android:background="#F2F2E1"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRowDetail5"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="ENVIAR MENSAGEM PARA MORADOR"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:background="#F2F2E1"
+            />
+
+    </TableRow>
 
 
-
-</RelativeLayout>
+</TableLayout>

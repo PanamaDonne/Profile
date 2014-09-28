@@ -49,6 +49,10 @@ public class CondoActivity extends Activity {
         button1=(Button)findViewById(R.id.button1);
         button1.setTextColor(Color.BLACK);
 
+        /*if (ParseUser.getCurrentUser().getUsername().equals("admin")) {
+            button1.setText("Agendamentos");
+        }*/
+
 
 
 
@@ -61,7 +65,9 @@ public class CondoActivity extends Activity {
         button3.setTextColor(Color.BLACK);
 
         button4=(Button)findViewById(R.id.button4);
-        
+
+
+
 
 
         button1.setOnClickListener(new OnClickListener() {

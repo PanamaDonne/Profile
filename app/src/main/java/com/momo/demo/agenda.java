@@ -70,7 +70,7 @@ public class agenda extends Activity {
                 CharSequence period = textView2.getText();
 
                 //TODO GET USERNAME
-                TextView textView3 = (TextView) view.findViewById(R.id.textAgenda);
+                TextView textView3 = (TextView) view.findViewById(R.id.userNameText);
                 CharSequence userName = textView3.getText();
 
                 Log.i(TAG, "LIST TEXT: " + period + " & " + date);
@@ -93,7 +93,7 @@ public class agenda extends Activity {
 
 
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(agenda.this);
-                                builder1.setMessage("You want to delete this period?");
+                                builder1.setMessage("Você tem certeza que quer apagar este agendamento?");
 
                                 builder1.setPositiveButton("Sim",
                                         new DialogInterface.OnClickListener() {

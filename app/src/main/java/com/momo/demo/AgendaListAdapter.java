@@ -75,7 +75,7 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
 
         super.getItemView(useragenda, v, parent);
 
-        ImageView image = (ImageView) v.findViewById(R.id.image);
+        ImageView garbageIcon = (ImageView) v.findViewById(R.id.garbage);
 
         TextView titleTextView = (TextView) v.findViewById(R.id.textAgenda);
         titleTextView.setText(useragenda.getTitle());
@@ -86,11 +86,12 @@ public class AgendaListAdapter extends ParseQueryAdapter<UserAgenda> {
         TextView periodTextView = (TextView) v.findViewById(R.id.textAgenda2);
         periodTextView.setText(useragenda.getPeriod());
 
-        TextView userTextView = (TextView) v.findViewById(R.id.textAgenda);
+        TextView userTextView = (TextView) v.findViewById(R.id.userNameText);
 
         // ADMIN PERMISSION
         if(ParseUser.getCurrentUser().getUsername().equals("admin")) {
 
+            garbageIcon.setVisibility(View.GONE);
             userTextView.setText(useragenda.getUser());
 
         }

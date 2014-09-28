@@ -37,9 +37,9 @@ public class UserAgenda extends ParseObject {
     }
 
     public String getUser() {
-        String bookedBy = "Booked by: ";
 
-        return bookedBy + (getString("username"));
+
+        return getString("username");
     }
 
 }
