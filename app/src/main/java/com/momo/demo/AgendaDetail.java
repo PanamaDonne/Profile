@@ -104,7 +104,7 @@ public class AgendaDetail extends Activity {
 
 
 
-        sendButton = (Button) findViewById(R.id.sendButton);
+        /*sendButton = (Button) findViewById(R.id.sendButton);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
 
@@ -117,7 +117,7 @@ public class AgendaDetail extends Activity {
                         Toast.LENGTH_LONG).show();
 
             }
-        });
+        });*/
 
 
 

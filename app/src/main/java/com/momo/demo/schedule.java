@@ -3,6 +3,7 @@ package com.momo.demo;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,6 +26,8 @@ import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -64,6 +67,7 @@ public class schedule extends Activity {
     private String objectId;
     private boolean dateAlreadyBooked;
     private View overlayView;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,21 @@ public class schedule extends Activity {
         overlayView = (View) findViewById(R.id.overlayView);
 
         context = getApplicationContext();
+
+
+        progress = new ProgressDialog(schedule.this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.show();
+
+        long delayInMillis = 2000;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                progress.dismiss();
+            }
+        }, delayInMillis);
 
 
         // ------------------------------------ Subclass of ParseQueryAdapter ------------------------
@@ -122,7 +141,11 @@ public class schedule extends Activity {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
 
-                dateAlreadyBooked = false;
+
+
+                progress.show();
+
+
 
 
                 Log.i(TAG, "MONTH: " + monthString + " = " + currentMonth);
@@ -147,16 +170,17 @@ public class schedule extends Activity {
                         if (e == null) {
                             Log.i(TAG, "FOUND: " + bookedList.size());
 
-
+                            progress.dismiss();
 
                             // ---------------------------- CHECK IF BOOKED ------------------------------------------------
                             if (((bookedList.size() > 0))) {
+
+
 
                                 objectId = bookedList.get(0).getObjectId();
 
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                                 builder1.setMessage("Este horário já foi agendado por outro usuário. Você quer entrar na ‘Lista de Espera’ para este horário?");
-
 
 
                                 // SET STANDBY USER
@@ -179,7 +203,6 @@ public class schedule extends Activity {
                                                 });
 
 
-
                                             }
                                         });
                                 builder1.setCancelable(true);
@@ -198,8 +221,6 @@ public class schedule extends Activity {
                             else {
 
                                 bookPeriod();
-
-
 
                             }
 
@@ -224,6 +245,8 @@ public class schedule extends Activity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
+
+
 
                 overlayView.setVisibility(View.GONE);
 
@@ -356,6 +379,8 @@ public class schedule extends Activity {
     void checkBooking() {
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
+        progress.show();
+
         query.whereEqualTo("date", date);
         query.whereEqualTo("bookedBy", user);
 
@@ -364,8 +389,12 @@ public class schedule extends Activity {
                 if (e == null) {
                     Log.i(TAG, "FOUND: " + bookedList.size());
 
+                    progress.dismiss();
+
                     // ---------------------------- CHECK IF USER ALREADY BOOKED - ADMIN CAN BOOK ------------------------------------------------
                     if (((bookedList.size() > 0) && (!user.getUsername().equals("admin")))) {
+
+
 
 
 

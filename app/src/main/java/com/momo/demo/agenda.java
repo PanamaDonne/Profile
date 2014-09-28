@@ -2,6 +2,7 @@ package com.momo.demo;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.Tag;
@@ -28,6 +29,8 @@ import com.parse.ParseUser;
 import java.util.Calendar;
 import java.util.Formatter;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class agenda extends Activity {
@@ -36,11 +39,27 @@ public class agenda extends Activity {
     private String TAG;
     private ListView listView;
     private String objectId;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
+
+        progress = new ProgressDialog(agenda.this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.show();
+
+        long delayInMillis = 2000;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                progress.dismiss();
+            }
+        }, delayInMillis);
+
 
         TAG = "agenda";
 
@@ -61,7 +80,7 @@ public class agenda extends Activity {
             public void onItemClick(final AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-
+                progress.show();
 
                 TextView textView = (TextView) view.findViewById(R.id.textAgenda);
                 final CharSequence date = textView.getText();
@@ -79,6 +98,7 @@ public class agenda extends Activity {
                 if(!ParseUser.getCurrentUser().getUsername().equals("admin")) {
 
 
+
                     final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
                     query.whereEqualTo("periods", period);
@@ -89,6 +109,8 @@ public class agenda extends Activity {
 
                             if (e == null) {
 
+                                progress.dismiss();
+
                                 Log.i(TAG, "FOUND: " + bookedList.size());
 
 
@@ -98,6 +120,8 @@ public class agenda extends Activity {
                                 builder1.setPositiveButton("Sim",
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
+
+                                                progress.show();
 
 
                                                 // SET PERIOD TO STANDBY USER 1
@@ -133,10 +157,20 @@ public class agenda extends Activity {
                                                                         agendaListAdapter.clear();
                                                                         agendaListAdapter.notifyDataSetChanged();
                                                                         listView.setAdapter(agendaListAdapter);
+                                                                        progress.dismiss();
+
+
                                                                     }
                                                                 });
+
+
+
+
+
                                                     }
                                                 });
+
+
 
                                             }
                                         });
@@ -177,6 +211,11 @@ public class agenda extends Activity {
 
         });
     }
+
+
+
+
+
 
     void parse() {
         Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
