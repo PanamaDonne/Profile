@@ -1,20 +1,12 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -31,24 +23,24 @@ public class sauna extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sauna);
+        setContentView(com.momo.profile.R.layout.activity_sauna);
 
-        button1 = (Button) findViewById(R.id.button1);
+        button1 = (Button) findViewById(com.momo.profile.R.id.button1);
         button1.setTextColor(Color.WHITE);
 
-        button2 = (Button) findViewById(R.id.button2);
+        button2 = (Button) findViewById(com.momo.profile.R.id.button2);
         button2.setTextColor(Color.WHITE);
 
-        button3 = (Button) findViewById(R.id.button3);
+        button3 = (Button) findViewById(com.momo.profile.R.id.button3);
         button3.setTextColor(Color.WHITE);
 
-        button4 = (Button) findViewById(R.id.button4);
+        button4 = (Button) findViewById(com.momo.profile.R.id.button4);
         button4.setTextColor(Color.WHITE);
 
-        button5 = (Button) findViewById(R.id.button5);
+        button5 = (Button) findViewById(com.momo.profile.R.id.button5);
         button5.setTextColor(Color.WHITE);
 
-        button6 = (Button) findViewById(R.id.button6);
+        button6 = (Button) findViewById(com.momo.profile.R.id.button6);
         button6.setTextColor(Color.WHITE);
 
         button1.setOnClickListener(new View.OnClickListener() {

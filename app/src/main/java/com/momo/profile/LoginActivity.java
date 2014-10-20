@@ -1,4 +1,4 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -32,13 +32,13 @@ public class LoginActivity extends Activity {
 
         TAG = "loginActivity";
         // Get the view from main.xml
-        setContentView(R.layout.activity_login);
+        setContentView(com.momo.profile.R.layout.activity_login);
         // Locate EditTexts in main.xml
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        username = (EditText) findViewById(com.momo.profile.R.id.username);
+        password = (EditText) findViewById(com.momo.profile.R.id.password);
 
         // Locate Buttons in main.xml
-        loginbutton = (Button) findViewById(R.id.login);
+        loginbutton = (Button) findViewById(com.momo.profile.R.id.login);
 
 
         // Login Button Click Listener

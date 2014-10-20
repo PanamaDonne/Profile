@@ -1,16 +1,12 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,10 +19,10 @@ public class sindico extends Activity {
     {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sindico);
+        setContentView(com.momo.profile.R.layout.activity_sindico);
 
-        textField = (EditText) findViewById(R.id.editText);
-        buttonSend = (Button) findViewById(R.id.buttonSend);
+        textField = (EditText) findViewById(com.momo.profile.R.id.editText);
+        buttonSend = (Button) findViewById(com.momo.profile.R.id.buttonSend);
 
         buttonSend.setText("ENVIAR MENSAGEM");
         buttonSend.setTextColor(Color.WHITE);

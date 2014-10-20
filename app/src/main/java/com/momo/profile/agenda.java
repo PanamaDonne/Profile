@@ -1,21 +1,16 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.nfc.Tag;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -23,14 +18,9 @@ import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
-import java.util.Calendar;
-import java.util.Formatter;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class agenda extends Activity {
@@ -44,7 +34,7 @@ public class agenda extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agenda);
+        setContentView(com.momo.profile.R.layout.activity_agenda);
 
 
         TAG = "agenda";
@@ -57,7 +47,7 @@ public class agenda extends Activity {
         // INIT PARSE.COM
         ParseObject.registerSubclass(UserAgenda.class);
         parse();
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(com.momo.profile.R.id.listView);
         listView.setAdapter(agendaListAdapter);
 
 
@@ -67,14 +57,14 @@ public class agenda extends Activity {
                                     final int position, long id) {
 
 
-                TextView textView = (TextView) view.findViewById(R.id.textAgenda);
+                TextView textView = (TextView) view.findViewById(com.momo.profile.R.id.textAgenda);
                 final CharSequence date = textView.getText();
 
-                TextView textView2 = (TextView) view.findViewById(R.id.textAgenda2);
+                TextView textView2 = (TextView) view.findViewById(com.momo.profile.R.id.textAgenda2);
                 CharSequence period = textView2.getText();
 
                 //TODO GET USERNAME
-                TextView textView3 = (TextView) view.findViewById(R.id.userNameText);
+                TextView textView3 = (TextView) view.findViewById(com.momo.profile.R.id.userNameText);
                 CharSequence userName = textView3.getText();
 
                 Log.i(TAG, "LIST TEXT: " + period + " & " + date);

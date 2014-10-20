@@ -1,31 +1,20 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,9 +27,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 
 public class schedule extends Activity {
@@ -73,10 +60,10 @@ public class schedule extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG = "calendarActivity";
-        setContentView(R.layout.activity_schedule);
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-        listView = (ListView) findViewById(R.id.listView);
-        overlayView = (View) findViewById(R.id.overlayView);
+        setContentView(com.momo.profile.R.layout.activity_schedule);
+        calendarView = (CalendarView) findViewById(com.momo.profile.R.id.calendarView);
+        listView = (ListView) findViewById(com.momo.profile.R.id.listView);
+        overlayView = (View) findViewById(com.momo.profile.R.id.overlayView);
 
         context = getApplicationContext();
 
@@ -128,7 +115,7 @@ public class schedule extends Activity {
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
         date = currentDay + " de " + currentMonth + " 2014";
 
-        text = (TextView) findViewById(R.id.textView);
+        text = (TextView) findViewById(com.momo.profile.R.id.textView);
         text.setText(date);
 
 
@@ -149,7 +136,7 @@ public class schedule extends Activity {
 
                 view.setSelected(true);
 
-                TextView textViewPeriods = (TextView) view.findViewById(R.id.text1);
+                TextView textViewPeriods = (TextView) view.findViewById(com.momo.profile.R.id.text1);
                 periods = textViewPeriods.getText();
 
 

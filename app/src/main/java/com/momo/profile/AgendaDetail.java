@@ -1,4 +1,4 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,13 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -34,22 +32,22 @@ public class AgendaDetail extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agenda_detail);
+        setContentView(com.momo.profile.R.layout.activity_agenda_detail);
 
         TAG = "AgendaDetail";
 
         Log.i(TAG, "DATE: " + getIntent().getStringExtra("date"));
 
-        date = (TextView)findViewById(R.id.dateText);
+        date = (TextView)findViewById(com.momo.profile.R.id.dateText);
         date.setText(getIntent().getStringExtra("date"));
 
-        period = (TextView)findViewById(R.id.periodText);
+        period = (TextView)findViewById(com.momo.profile.R.id.periodText);
         period.setText(getIntent().getStringExtra("period"));
 
-        user = (TextView)findViewById(R.id.userText);
+        user = (TextView)findViewById(com.momo.profile.R.id.userText);
         user.setText("Agendado - " + ((getIntent().getStringExtra("username"))));
 
-        deleteButton = (Button)findViewById(R.id.deleteButton);
+        deleteButton = (Button)findViewById(com.momo.profile.R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

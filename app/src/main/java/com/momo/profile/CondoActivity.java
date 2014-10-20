@@ -1,13 +1,8 @@
-package com.momo.demo;
+package com.momo.profile;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +32,7 @@ public class CondoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_condo);
+        setContentView(com.momo.profile.R.layout.activity_condo);
 
 
 
@@ -46,7 +41,7 @@ public class CondoActivity extends Activity {
 
 
 
-        button1=(Button)findViewById(R.id.button1);
+        button1=(Button)findViewById(com.momo.profile.R.id.button1);
         button1.setTextColor(Color.BLACK);
 
         /*if (ParseUser.getCurrentUser().getUsername().equals("admin")) {
@@ -57,14 +52,14 @@ public class CondoActivity extends Activity {
 
 
 
-        button2=(Button)findViewById(R.id.button2);
+        button2=(Button)findViewById(com.momo.profile.R.id.button2);
         button2.setTextColor(Color.BLACK);
 
 
-        button3=(Button)findViewById(R.id.button3);
+        button3=(Button)findViewById(com.momo.profile.R.id.button3);
         button3.setTextColor(Color.BLACK);
 
-        button4=(Button)findViewById(R.id.button4);
+        button4=(Button)findViewById(com.momo.profile.R.id.button4);
 
 
 

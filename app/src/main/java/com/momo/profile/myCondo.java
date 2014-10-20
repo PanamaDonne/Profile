@@ -1,4 +1,4 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -16,21 +16,21 @@ public class myCondo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_condo);
+        setContentView(com.momo.profile.R.layout.activity_my_condo);
 
-        buttonMap = (Button) findViewById(R.id.buttonMap);
+        buttonMap = (Button) findViewById(com.momo.profile.R.id.buttonMap);
         buttonMap.setTextColor(Color.WHITE);
         buttonMap.setTextSize(20.0f);
 
-        buttonService = (Button) findViewById(R.id.buttonService);
+        buttonService = (Button) findViewById(com.momo.profile.R.id.buttonService);
         buttonService.setTextColor(Color.WHITE);
         buttonService.setTextSize(20.0f);
 
-        buttonTel = (Button) findViewById(R.id.buttonTel);
+        buttonTel = (Button) findViewById(com.momo.profile.R.id.buttonTel);
         buttonTel.setTextColor(Color.WHITE);
         buttonTel.setTextSize(20.0f);
 
-        buttonInfo = (Button) findViewById(R.id.buttonInfo);
+        buttonInfo = (Button) findViewById(com.momo.profile.R.id.buttonInfo);
         buttonInfo.setTextColor(Color.WHITE);
         buttonInfo.setTextSize(20.0f);
     }

@@ -1,5 +1,5 @@
-MoMo Demo App for Android
+MoMo profile App for Android
 
 ====
 
-MoMo Demo App - Android
+MoMo profile App - Android

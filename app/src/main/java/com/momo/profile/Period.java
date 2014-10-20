@@ -1,6 +1,6 @@
-package com.momo.demo;
+package com.momo.profile;
 
-import android.content.Intent;
+import android.nfc.Tag;
 import android.util.Log;
 
 import com.parse.FindCallback;
@@ -17,29 +17,21 @@ import java.util.List;
  * Created by daniel-home on 11/09/14.
  */
 
-@ParseClassName("bookings_tennis")
-public class UserAgenda extends ParseObject {
+@ParseClassName("periods")
+public class Period extends ParseObject {
 
 
-
-
-
-    public UserAgenda() {
+    public Period() {
         // A default constructor is required.
     }
 
     public String getTitle() {
-        return getString("date");
+        return getString("period");
     }
 
-    public String getPeriod() {
-        return getString("periods");
-    }
-
-    public String getUser() {
 
 
-        return getString("username");
-    }
+
+
 
 }

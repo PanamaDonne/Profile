@@ -1,4 +1,4 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -16,9 +16,9 @@ public class report extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(com.momo.profile.R.layout.activity_report);
 
-        tv = (TextView) findViewById(R.id.textView);
+        tv = (TextView) findViewById(com.momo.profile.R.id.textView);
 
         tv.setTextColor(Color.BLACK);
         tv.setTextSize(20.0f);

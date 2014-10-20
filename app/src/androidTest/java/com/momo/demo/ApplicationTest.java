@@ -1,4 +1,4 @@
-package com.momo.demo;
+package com.momo.profile;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
