@@ -46,20 +46,6 @@ public class agenda extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
-        progress = new ProgressDialog(agenda.this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
-        progress.show();
-
-        long delayInMillis = 2000;
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                progress.dismiss();
-            }
-        }, delayInMillis);
-
 
         TAG = "agenda";
 
@@ -80,7 +66,6 @@ public class agenda extends Activity {
             public void onItemClick(final AdapterView<?> parent, final View view,
                                     final int position, long id) {
 
-                progress.show();
 
                 TextView textView = (TextView) view.findViewById(R.id.textAgenda);
                 final CharSequence date = textView.getText();
@@ -109,7 +94,7 @@ public class agenda extends Activity {
 
                             if (e == null) {
 
-                                progress.dismiss();
+
 
                                 Log.i(TAG, "FOUND: " + bookedList.size());
 
@@ -121,7 +106,6 @@ public class agenda extends Activity {
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
 
-                                                progress.show();
 
 
                                                 // SET PERIOD TO STANDBY USER 1
@@ -157,7 +141,7 @@ public class agenda extends Activity {
                                                                         agendaListAdapter.clear();
                                                                         agendaListAdapter.notifyDataSetChanged();
                                                                         listView.setAdapter(agendaListAdapter);
-                                                                        progress.dismiss();
+
 
 
                                                                     }

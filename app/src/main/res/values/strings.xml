@@ -16,7 +16,7 @@
     <string name="title_activity_map">map</string>
     <string name="title_activity_delivery">delivery</string>
     <string name="title_activity_agenda">Agenda</string>
-    <string name="title_activity_login">Por favor faz login</string>
+    <string name="title_activity_login">Faça seu login</string>
     <string name="Username">Usuário</string>
     <string name="Password">Senha</string>
     <string name="LoginBtn">Login</string>

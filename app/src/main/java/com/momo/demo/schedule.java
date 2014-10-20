@@ -82,8 +82,8 @@ public class schedule extends Activity {
 
 
         progress = new ProgressDialog(schedule.this);
-        progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
+        progress.setTitle("Carregando");
+        progress.setMessage("Por favor aguarde...");
         progress.show();
 
         long delayInMillis = 2000;
@@ -123,18 +123,13 @@ public class schedule extends Activity {
         fmtDay.format("%te", cal);
         currentDay = fmtDay.toString();
 
-
-
-
-
-
         Log.i(TAG, "TIME STAMP: " + currentDay);
 
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-
+        date = currentDay + " de " + currentMonth + " 2014";
 
         text = (TextView) findViewById(R.id.textView);
-        text.setText(currentDate);
+        text.setText(date);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -248,8 +243,8 @@ public class schedule extends Activity {
 
 
 
-                overlayView.setVisibility(View.GONE);
 
+                overlayView.setVisibility(View.GONE);
 
 
                 StringBuilder sb = new StringBuilder();
@@ -379,7 +374,6 @@ public class schedule extends Activity {
     void checkBooking() {
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
-        progress.show();
 
         query.whereEqualTo("date", date);
         query.whereEqualTo("bookedBy", user);
@@ -389,12 +383,9 @@ public class schedule extends Activity {
                 if (e == null) {
                     Log.i(TAG, "FOUND: " + bookedList.size());
 
-                    progress.dismiss();
 
                     // ---------------------------- CHECK IF USER ALREADY BOOKED - ADMIN CAN BOOK ------------------------------------------------
                     if (((bookedList.size() > 0) && (!user.getUsername().equals("admin")))) {
-
-
 
 
 
@@ -425,12 +416,15 @@ public class schedule extends Activity {
 
                         } else {
 
+
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                             builder1.setMessage("Não é permitido agendar esta data.");
 
                             builder1.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
+
+                                            overlayView.setVisibility(View.VISIBLE);
 
                                         }
                                     });
@@ -446,12 +440,16 @@ public class schedule extends Activity {
 
                         if((!monthString.equals("OUTUBRO")) && (!user.getUsername().equals("admin"))) {
 
+
+
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(schedule.this);
                             builder1.setMessage("Não é permitido agendar esta data.");
 
                             builder1.setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
+
+                                            overlayView.setVisibility(View.VISIBLE);
 
                                         }
                                     });
@@ -461,6 +459,8 @@ public class schedule extends Activity {
                             alert11.show();
 
                         }
+
+
 
                     }
 
@@ -682,7 +682,7 @@ public class schedule extends Activity {
                         }
 
 
-                        dateAlreadyBooked = true;
+
 
 
                         Toast.makeText(getApplicationContext(), "Horario marcada! Você receberá uma notificação duas horas antes da sua atividade.",
