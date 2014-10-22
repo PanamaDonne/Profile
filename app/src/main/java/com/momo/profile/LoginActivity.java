@@ -74,7 +74,7 @@ public class LoginActivity extends Activity {
 
                                     Intent intent = new Intent(
                                             LoginActivity.this,
-                                            CondoActivity.class);
+                                            DashBoardActivity.class);
                                     startActivity(intent);
                                     Toast.makeText(getApplicationContext(),
                                             "Successfully Logged in",

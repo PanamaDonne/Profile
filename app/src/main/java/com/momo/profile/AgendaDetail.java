@@ -75,7 +75,7 @@ public class AgendaDetail extends Activity {
 
                                             bookedList.get(0).deleteInBackground();
 
-                                            Intent intent = new Intent(AgendaDetail.this,CondoActivity.class);
+                                            Intent intent = new Intent(AgendaDetail.this,DashBoardActivity.class);
                                             startActivity(intent);
 
                                         }

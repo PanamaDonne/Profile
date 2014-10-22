@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MoMo - mobile solutions</string>
+    <string name="app_name">Profile English School</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_condo">Condomínio Seridó 106</string>
-    <string name="title_activity_schedule">Calendário</string>
+    <string name="title_activity_dashboard">Profile</string>
+    <string name="title_activity_schedule">Calendar</string>
     <string name="title_activity_sauna">SAUNA</string>
     <string name="title_activity_classes">CLASSES</string>
     <string name="title_activity_report">REPORT A PROBLEM</string>

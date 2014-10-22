@@ -34,7 +34,7 @@ public class sindico extends Activity {
                 Toast.makeText(getApplicationContext(), "Sua mensagem foi enviada com sucesso. Em breve entrarei em contato.",
                         Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(sindico.this,CondoActivity.class);
+                Intent intent = new Intent(sindico.this,DashBoardActivity.class);
                 startActivity(intent);
             }
         });
