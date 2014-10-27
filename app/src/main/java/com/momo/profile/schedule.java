@@ -39,10 +39,9 @@ public class schedule extends Activity {
     private CalendarView calendarView;
     String currentDateTime;
     private TextView text;
-    private PeriodListAdapter periodAdapter;
+    private StudentListAdapter studentAdapter;
     private ParseUser user;
     private String monthString;
-    private String currentDate;
     private String yearString;
     private Formatter fmt;
     private Formatter fmtDay;
@@ -52,7 +51,6 @@ public class schedule extends Activity {
     private int rowPosition;
     private CharSequence periods;
     private String objectId;
-    private boolean dateAlreadyBooked;
     private View overlayView;
     private ProgressDialog progress;
 
@@ -84,17 +82,15 @@ public class schedule extends Activity {
 
 
         // ------------------------------------ Subclass of ParseQueryAdapter ------------------------
-        periodAdapter = new PeriodListAdapter(this);
-
-
+        studentAdapter = new StudentListAdapter(this);
 
 
         // ----------------------------------- INIT PARSE.COM ----------------------------------------
-        ParseObject.registerSubclass(Period.class);
+        ParseObject.registerSubclass(Student.class);
         parse();
 
 
-        listView.setAdapter(periodAdapter);
+        listView.setAdapter(studentAdapter);
 
 
         fmt = new Formatter();
@@ -125,7 +121,7 @@ public class schedule extends Activity {
 
 
 
-                progress.show();
+                /*progress.show();
 
 
 
@@ -210,7 +206,7 @@ public class schedule extends Activity {
                             Log.d("score", "Error: " + e.getMessage());
                         }
                     }
-                });
+                });*/
 
 
 
@@ -331,8 +327,7 @@ public class schedule extends Activity {
                 Log.i(TAG, "DATE: " + date);
                 text.setText(date);
 
-                // CHECK BOOKING CRITERIA
-                checkBooking();
+
 
 
 
@@ -352,7 +347,7 @@ public class schedule extends Activity {
 
     // Init Parse
     void parse() {
-        Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
+        Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
 
     }
 

@@ -19,27 +19,17 @@ import com.parse.PushService;
 public class DashBoardActivity extends Activity {
 
 
-
-
     private Button button1;
     private Button button2;
     private Button button3;
     private Button button4;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.momo.profile.R.layout.activity_dashboard);
 
-
-
-
         checkLoggedIn();
-
-
 
         button1=(Button)findViewById(com.momo.profile.R.id.button1);
         button1.setTextColor(Color.BLACK);
@@ -47,9 +37,6 @@ public class DashBoardActivity extends Activity {
         /*if (ParseUser.getCurrentUser().getUsername().equals("admin")) {
             button1.setText("Agendamentos");
         }*/
-
-
-
 
 
         button2=(Button)findViewById(com.momo.profile.R.id.button2);
@@ -69,7 +56,7 @@ public class DashBoardActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashBoardActivity.this,agenda.class);
+                Intent intent = new Intent(DashBoardActivity.this,schedule.class);
                 startActivity(intent);
             }
         });
@@ -115,9 +102,9 @@ public class DashBoardActivity extends Activity {
     void checkLoggedIn() {
 
         // Add your initialization code here
-        Parse.initialize(this, "fNj6swlEg1d5Rn4rO8jBPwJ6BlAbDN0A2GJbYnTB", "6Ua0deolkpYrnWagJRZcoRulDI2BHbLFccXzW85E");
+        Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
 
-        PushService.setDefaultPushCallback(this, agenda.class);
+        PushService.setDefaultPushCallback(this, DashBoardActivity.class);
         ParseAnalytics.trackAppOpened(getIntent());
 
 
@@ -130,7 +117,7 @@ public class DashBoardActivity extends Activity {
         defaultACL.setPublicReadAccess(true);
         defaultACL.setPublicWriteAccess(true);
 
-        defaultACL.setWriteAccess("msoG6TTD5W", true);
+        defaultACL.setWriteAccess("xqmFxOtuxY", true);
 
         ParseACL.setDefaultACL(defaultACL, true);
         // Determine whether the current user is an anonymous user

@@ -17,16 +17,20 @@ import java.util.List;
  * Created by daniel-home on 11/09/14.
  */
 
-@ParseClassName("periods")
-public class Period extends ParseObject {
+@ParseClassName("student")
+public class Student extends ParseObject {
 
 
-    public Period() {
+    public Student() {
         // A default constructor is required.
     }
 
-    public String getTitle() {
-        return getString("period");
+    public String getStudentName() {
+        return getString("name");
+    }
+
+    public String getTeacherName() {
+        return getString("teacher");
     }
 
 

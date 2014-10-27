@@ -26,7 +26,7 @@
         android:layout_centerVertical="true"
         android:paddingLeft="3dip"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/iconPeriod"
+        android:layout_below="@+id/iconPeriod"
         android:paddingRight="3dip"
         />
 
@@ -35,12 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1"
-        android:paddingBottom="20dip"
+        android:paddingBottom="10dip"
         android:paddingLeft="20dip"
         android:paddingRight="20dip"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#880000"
+        android:textColor="#000000"
         />
 
 </RelativeLayout>

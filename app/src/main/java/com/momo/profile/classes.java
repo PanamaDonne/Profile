@@ -47,13 +47,6 @@ public class classes extends Activity {
 
 
 
-        button1.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(classes.this,sauna.class);
-                startActivity(intent);
-            }
-        });
     }
 }
