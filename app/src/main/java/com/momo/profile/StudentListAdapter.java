@@ -17,6 +17,7 @@ public class StudentListAdapter extends ParseQueryAdapter<Student> {
     private String TAG = "StudentListAdapter";
     private TextView studentTextView;
     private TextView teacherTextView;
+    private TextView timeTextView;
 
 
 
@@ -46,16 +47,13 @@ public class StudentListAdapter extends ParseQueryAdapter<Student> {
 
 
         studentTextView = (TextView) v.findViewById(com.momo.profile.R.id.text1);
-        studentTextView.setText(student.getStudentName());
+        studentTextView.setText("Student: " + student.getStudentName());
 
         teacherTextView = (TextView) v.findViewById(com.momo.profile.R.id.text2);
-        teacherTextView.setText(student.getTeacherName());
+        teacherTextView.setText("Teacher: " + student.getTeacherName());
 
-        Log.i(TAG, "STUDENT NAME: " + student.getStudentName());
-
-        Log.i(TAG, "TEACHER NAME: " + student.getTeacherName());
-
-
+        timeTextView = (TextView) v.findViewById(com.momo.profile.R.id.time);
+        timeTextView.setText(student.getTime());
 
         return v;
     }

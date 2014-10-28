@@ -33,6 +33,10 @@ public class Student extends ParseObject {
         return getString("teacher");
     }
 
+    public String getTime() {
+        return getString("time_classDay_1");
+    }
+
 
 
 

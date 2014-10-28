@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -51,7 +52,6 @@ public class schedule extends Activity {
     private int rowPosition;
     private CharSequence periods;
     private String objectId;
-    private View overlayView;
     private ProgressDialog progress;
 
     @Override
@@ -61,7 +61,7 @@ public class schedule extends Activity {
         setContentView(com.momo.profile.R.layout.activity_schedule);
         calendarView = (CalendarView) findViewById(com.momo.profile.R.id.calendarView);
         listView = (ListView) findViewById(com.momo.profile.R.id.listView);
-        overlayView = (View) findViewById(com.momo.profile.R.id.overlayView);
+
 
         context = getApplicationContext();
 
@@ -227,7 +227,7 @@ public class schedule extends Activity {
 
 
 
-                overlayView.setVisibility(View.GONE);
+
 
 
                 StringBuilder sb = new StringBuilder();
@@ -378,7 +378,7 @@ public class schedule extends Activity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
 
-                                        overlayView.setVisibility(View.VISIBLE);
+
 
                                     }
                                 });
@@ -406,7 +406,7 @@ public class schedule extends Activity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
-                                            overlayView.setVisibility(View.VISIBLE);
+
 
                                         }
                                     });
@@ -431,7 +431,7 @@ public class schedule extends Activity {
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
-                                            overlayView.setVisibility(View.VISIBLE);
+
 
                                         }
                                     });
