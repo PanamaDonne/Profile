@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
@@ -94,7 +95,8 @@ public class schedule extends Activity {
 
 
         fmt = new Formatter();
-        Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
+
 
         // CURRENT MONTH
         fmt = new Formatter();
@@ -225,21 +227,14 @@ public class schedule extends Activity {
                                             int dayOfMonth) {
 
 
-
-
-
-
-
                 StringBuilder sb = new StringBuilder();
                 sb.append(dayOfMonth);
                 day = sb.toString();
 
 
-
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(year);
                 yearString = sb2.toString();
-
 
 
                 switch (month) {
@@ -329,8 +324,6 @@ public class schedule extends Activity {
 
 
 
-
-
             }
 
 
@@ -357,7 +350,7 @@ public class schedule extends Activity {
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("bookings_tennis");
 
 
-        query.whereEqualTo("date", date);
+        query.whereEqualTo("weekday", date);
         query.whereEqualTo("bookedBy", user);
 
         query.findInBackground(new FindCallback<ParseObject>() {

@@ -34,7 +34,7 @@ public class Student extends ParseObject {
     }
 
     public String getTime() {
-        return getString("time_classDay_1");
+        return getString("time");
     }
 
 

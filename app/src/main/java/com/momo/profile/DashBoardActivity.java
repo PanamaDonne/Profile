@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 
+import com.crashlytics.android.Crashlytics;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
@@ -27,6 +28,7 @@ public class DashBoardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
         setContentView(com.momo.profile.R.layout.activity_dashboard);
 
         checkLoggedIn();

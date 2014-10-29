@@ -100,6 +100,7 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="ee0d08350ce723c81167f3a4d150fc4a92a8b50c"/>
 
 
 
