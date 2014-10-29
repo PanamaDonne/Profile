@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
@@ -54,6 +55,7 @@ public class schedule extends Activity {
     private CharSequence periods;
     private String objectId;
     private ProgressDialog progress;
+    private String weekDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,6 +239,9 @@ public class schedule extends Activity {
                 yearString = sb2.toString();
 
 
+
+
+
                 switch (month) {
 
                        case 0:  {
@@ -323,9 +328,31 @@ public class schedule extends Activity {
                 text.setText(date);
 
 
+                // Set weekday
+                GregorianCalendar cal = new GregorianCalendar(year, month, dayOfMonth);
+                int weekDayInt = cal.get(Calendar.DAY_OF_WEEK);
+
+                switch(weekDayInt){
+                    case 1: weekDay = "Sunday";
+                        break;
+                    case 2: weekDay = "Monday";
+                        break;
+                    case 3: weekDay = "Tuesday";
+                        break;
+                    case 4: weekDay = "Wednesday";
+                        break;
+                    case 5: weekDay = "Thursday";
+                        break;
+                    case 6: weekDay = "Friday";
+                        break;
+                    case 7: weekDay = "Saturday";
+                        break;
+                }
+
+                Log.i(TAG, "WEEKDAY: " + weekDay);
+
 
             }
-
 
 
         });
