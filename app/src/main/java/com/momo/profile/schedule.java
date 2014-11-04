@@ -252,19 +252,19 @@ public class schedule extends Activity {
                 int weekDayInt = cal.get(Calendar.DAY_OF_WEEK);
 
                 switch(weekDayInt){
-                    case 1: Globals.weekDay = "Sunday";
+                    case 1: Globals.weekDay = "sunday";
                         break;
-                    case 2: Globals.weekDay = "Monday";
+                    case 2: Globals.weekDay = "monday";
                         break;
-                    case 3: Globals.weekDay = "Tuesday";
+                    case 3: Globals.weekDay = "tuesday";
                         break;
-                    case 4: Globals.weekDay = "Wednesday";
+                    case 4: Globals.weekDay = "wednesday";
                         break;
-                    case 5: Globals.weekDay = "Thursday";
+                    case 5: Globals.weekDay = "thursday";
                         break;
-                    case 6: Globals.weekDay = "Friday";
+                    case 6: Globals.weekDay = "friday";
                         break;
-                    case 7: Globals.weekDay = "Saturday";
+                    case 7: Globals.weekDay = "saturday";
                         break;
                 }
 
