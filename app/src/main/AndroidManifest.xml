@@ -9,9 +9,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <permission android:name="com.momo.profile.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="com.momo.profile.permission.C2D_MESSAGE" />
 
 
 
@@ -38,20 +35,12 @@
             android:label="@string/title_activity_classes" >
         </activity>
         <activity
-            android:name=".sauna"
-            android:label="@string/title_activity_sauna" >
-        </activity>
-        <activity
             android:name=".report"
             android:label="@string/title_activity_report" >
         </activity>
         <activity
             android:name=".mural"
             android:label="@string/title_activity_mural" >
-        </activity>
-        <activity
-            android:name=".sindico"
-            android:label="@string/title_activity_sindico" >
         </activity>
         <activity
             android:name=".portaria"
@@ -81,31 +70,9 @@
         </activity>
 
 
-        <!--
-                       PUSH NOTIFICATIONS
-                -->
-        <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.momo.profile" />
-            </intent-filter>
-        </receiver>
-
-        <service android:name="com.parse.PushService" />
-        <receiver android:name="com.parse.ParseBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-            </intent-filter>
-        </receiver>
         <meta-data android:name="com.crashlytics.ApiKey" android:value="ee0d08350ce723c81167f3a4d150fc4a92a8b50c"/>
 
-
-
     </application>
-
 
 
     <uses-feature

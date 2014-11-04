@@ -14,7 +14,7 @@ import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
-import com.parse.PushService;
+
 
 
 public class DashBoardActivity extends Activity {
@@ -30,6 +30,7 @@ public class DashBoardActivity extends Activity {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
         setContentView(com.momo.profile.R.layout.activity_dashboard);
+
 
         checkLoggedIn();
 
@@ -60,6 +61,7 @@ public class DashBoardActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(DashBoardActivity.this,schedule.class);
                 startActivity(intent);
+
             }
         });
 
@@ -106,7 +108,7 @@ public class DashBoardActivity extends Activity {
         // Add your initialization code here
         Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
 
-        PushService.setDefaultPushCallback(this, DashBoardActivity.class);
+
         ParseAnalytics.trackAppOpened(getIntent());
 
 

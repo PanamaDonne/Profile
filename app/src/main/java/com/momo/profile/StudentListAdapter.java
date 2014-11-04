@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
@@ -14,25 +13,33 @@ import com.parse.ParseQueryAdapter;
  */
 public class StudentListAdapter extends ParseQueryAdapter<Student> {
 
-    private String TAG = "StudentListAdapter";
+    private static String TAG = "StudentListAdapter";
     private TextView studentTextView;
     private TextView teacherTextView;
     private TextView timeTextView;
-
+    private static String weekDay;
 
 
 
     public StudentListAdapter(Context context) {
+
+
         super(context, new ParseQueryAdapter.QueryFactory<Student>() {
             public ParseQuery create() {
 
+                weekDay = Globals.weekDay;
+
                 ParseQuery query = new ParseQuery("student");
-                query.orderByAscending("name");
+
+                query.whereContains("weekDay", weekDay);
+
+                query.orderByDescending("time");
+
 
                 return query;
 
-
             }
+
         });
     }
 
@@ -55,9 +62,20 @@ public class StudentListAdapter extends ParseQueryAdapter<Student> {
         timeTextView = (TextView) v.findViewById(com.momo.profile.R.id.time);
         timeTextView.setText(student.getTime());
 
+
+
+
         return v;
     }
 
 
 
+
+
+
+
 }
+
+
+
+
