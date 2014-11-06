@@ -1,37 +1,30 @@
 package com.momo.profile;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 
@@ -44,7 +37,7 @@ public class schedule extends Activity {
     private CalendarView calendarView;
     String currentDateTime;
     private TextView text;
-    private StudentListAdapter studentAdapter;
+    private ScheduleListAdapter scheduleAdapter;
     private ParseUser user;
     private String monthString;
     private String yearString;
@@ -92,13 +85,13 @@ public class schedule extends Activity {
 
 
         // ------------------------------------ Subclass of ParseQueryAdapter ------------------------
-        studentAdapter = new StudentListAdapter(this);
+        scheduleAdapter = new ScheduleListAdapter(this);
 
 
 
 
         // ----------------------------------- INIT PARSE.COM ----------------------------------------
-        ParseObject.registerSubclass(Student.class);
+        ParseObject.registerSubclass(ParseStudent.class);
         parse();
 
 
@@ -309,13 +302,13 @@ public class schedule extends Activity {
 
                     Log.i(TAG, "FOUND: " + classList);
 
-                    listView.setAdapter(studentAdapter);
+                    listView.setAdapter(scheduleAdapter);
 
                     progress.dismiss();
 
                 } else if(classList.size() == 0) {
 
-                    studentAdapter.clear();
+                    scheduleAdapter.clear();
                     progress.dismiss();
 
                 } else {

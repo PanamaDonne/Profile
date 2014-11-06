@@ -18,10 +18,10 @@ import java.util.List;
  */
 
 @ParseClassName("student")
-public class Student extends ParseObject {
+public class ParseStudent extends ParseObject {
 
 
-    public Student() {
+    public ParseStudent() {
         // A default constructor is required.
     }
 

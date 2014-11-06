@@ -49,7 +49,7 @@ public class DashBoardActivity extends Activity {
         button3=(Button)findViewById(com.momo.profile.R.id.button3);
         button3.setTextColor(Color.BLACK);
 
-        button4=(Button)findViewById(com.momo.profile.R.id.button4);
+
 
 
 
@@ -69,7 +69,7 @@ public class DashBoardActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashBoardActivity.this,schedule.class);
+                Intent intent = new Intent(DashBoardActivity.this,Students.class);
                 startActivity(intent);
             }
         });
@@ -82,17 +82,6 @@ public class DashBoardActivity extends Activity {
             public void onClick(View v) {
 
 
-            }
-        });
-
-        button4.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Logout current user
-                ParseUser.logOut();
-                Intent intent = new Intent(DashBoardActivity.this,LoginActivity.class);
-                startActivity(intent);
             }
         });
 

@@ -26,48 +26,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".schedule"
             android:label="@string/title_activity_schedule" >
         </activity>
+
         <activity
-            android:name=".classes"
-            android:label="@string/title_activity_classes" >
+            android:name=".Students"
+            android:label="@string/title_activity_schedule" >
         </activity>
-        <activity
-            android:name=".report"
-            android:label="@string/title_activity_report" >
-        </activity>
-        <activity
-            android:name=".mural"
-            android:label="@string/title_activity_mural" >
-        </activity>
-        <activity
-            android:name=".portaria"
-            android:label="@string/title_activity_portaria" >
-        </activity>
-        <activity
-            android:name=".myCondo"
-            android:label="@string/title_activity_my_condo" >
-        </activity>
-        <activity
-            android:name=".map"
-            android:label="@string/title_activity_map" >
-        </activity>
-        <activity
-            android:name=".agenda"
-            android:label="@string/title_activity_agenda"
-            android:screenOrientation="portrait" >
-        </activity>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name=".AgendaDetail"
-            android:label="@string/title_activity_agenda_detail" >
-        </activity>
+
 
 
         <meta-data android:name="com.crashlytics.ApiKey" android:value="ee0d08350ce723c81167f3a4d150fc4a92a8b50c"/>

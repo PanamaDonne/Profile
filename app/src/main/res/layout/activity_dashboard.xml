@@ -78,33 +78,4 @@
 
     </TableRow>
 
-    <View
-        android:layout_height="1dip"
-        android:layout_width="fill_parent"
-        android:background="#FFFFFF"
-        />
-
-    <TableRow
-        android:id="@+id/tableRow4"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="Messages"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:background="#AAF2F2E1"
-            />
-
-    </TableRow>
-
-
-
-
 </TableLayout>

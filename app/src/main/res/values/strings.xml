@@ -26,5 +26,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_agenda_list">Items</string>
     <string name="title_agenda_detail">Agenda Detalhes</string>
+    <string name="title_activity_students">Students</string>
 
 </resources>

@@ -5,46 +5,14 @@
     android:background="#F2F2E1">
 
 
-    <ImageView
-        android:id="@+id/iconPeriod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="6dip"
-        android:layout_marginLeft="20dip"
-        android:src="@drawable/icon_period" />
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_toRightOf="@id/iconPeriod"
-        />
-
-
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:textColor="#000000"
-        android:textStyle="normal"
         android:layout_toRightOf="@id/iconPeriod"
-        android:layout_below="@id/time"
-        />
-
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:layout_toRightOf="@id/iconPeriod"
-        android:textSize="16sp"
-        android:textStyle="normal"
-        android:textColor="#000000"
         />
 
 </RelativeLayout>
