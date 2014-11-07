@@ -28,6 +28,8 @@ public class StudentListAdapter extends ParseQueryAdapter<ParseStudent> {
 
                 ParseQuery query = new ParseQuery("student");
 
+                query.whereEqualTo("duplicateName", true);
+
                 query.orderByAscending("name");
 
 

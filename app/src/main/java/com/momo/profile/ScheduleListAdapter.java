@@ -32,7 +32,7 @@ public class ScheduleListAdapter extends ParseQueryAdapter<ParseStudent> {
 
                 query.whereContains("weekDay", weekDay);
 
-                query.orderByDescending("time");
+                query.orderByAscending("time");
 
 
                 return query;
