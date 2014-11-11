@@ -2,15 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.momo.profile" >
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-
 
     <application
         android:allowBackup="true"
@@ -26,29 +23,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".schedule"
             android:label="@string/title_activity_schedule" >
         </activity>
-
         <activity
             android:name=".Students"
             android:label="@string/title_activity_schedule" >
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
 
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="ee0d08350ce723c81167f3a4d150fc4a92a8b50c" />
 
-
-        <meta-data android:name="com.crashlytics.ApiKey" android:value="ee0d08350ce723c81167f3a4d150fc4a92a8b50c"/>
-
+        <activity
+            android:name=".ScheduleDetail"
+            android:label="@string/title_activity_schedule_detail" >
+        </activity>
     </application>
-
 
     <uses-feature
         android:name="android.hardware.touchscreen"

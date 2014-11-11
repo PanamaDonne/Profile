@@ -30,7 +30,7 @@
         android:layout_weight="1"
         android:minHeight="100dip"
         android:dividerHeight="1dip"
-        android:background="#F2F2E1"
+        android:background="#FFFFFF"
         android:divider="@android:color/transparent"
         android:layout_below="@id/textView"/>
 

@@ -3,6 +3,7 @@ package com.momo.profile;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -130,6 +131,23 @@ public class schedule extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
+
+                //GET CLASS INFO
+                TextView studentNameTextField = (TextView) view.findViewById(R.id.text1);
+                CharSequence studentName = studentNameTextField.getText();
+
+                TextView teacherNameTextField = (TextView) view.findViewById(R.id.text2);
+                CharSequence teacherName = teacherNameTextField.getText();
+
+                TextView timeTextField = (TextView) view.findViewById(R.id.time);
+                CharSequence time = timeTextField.getText();
+
+
+                Intent intent = new Intent(schedule.this,ScheduleDetail.class);
+                intent.putExtra("studentName", studentName);
+                intent.putExtra("teacherName", teacherName);
+                intent.putExtra("time", time);
+                startActivity(intent);
 
             }
 
