@@ -45,6 +45,10 @@
             android:name=".ScheduleDetail"
             android:label="@string/title_activity_schedule_detail" >
         </activity>
+        <activity
+            android:name=".StudentDetail"
+            android:label="@string/title_activity_student_detail" >
+        </activity>
     </application>
 
     <uses-feature

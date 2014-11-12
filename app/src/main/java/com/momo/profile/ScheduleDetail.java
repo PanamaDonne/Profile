@@ -4,33 +4,41 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class ScheduleDetail extends Activity {
 
+
+    private TextView student;
+    private TextView teacher;
+    private TextView time;
+    private String TAG;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_schedule_detail);
-    }
+
+        student = (TextView)findViewById(R.id.studentName);
+        student.setText((getIntent().getStringExtra("studentName")));
+
+        teacher = (TextView)findViewById(R.id.teacherName);
+        teacher.setText((getIntent().getStringExtra("teacherName")));
+
+        time = (TextView)findViewById(R.id.time);
+        time.setText((getIntent().getStringExtra("time")));
+
+        TAG = "ScheduleDetail";
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.schedule_detail, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
+
+
 }
