@@ -13,7 +13,7 @@
         android:minHeight="100dip"
         android:dividerHeight="2dip"
         android:background="#FFFFFF"
-        android:divider="@android:color/transparent"
+        android:divider="@android:color/black"
         android:layout_below="@id/textView"/>
 
 </RelativeLayout>

@@ -22,6 +22,9 @@ public class StudentDetail extends Activity {
     private TextView day1;
     private TextView day2;
     private TextView day3;
+    private TextView time1;
+    private TextView time2;
+    private TextView time3;
     private String weekDay;
     private String TAG;
 
@@ -37,6 +40,11 @@ public class StudentDetail extends Activity {
 
         day1 = (TextView)findViewById(R.id.day1);
         day2 = (TextView)findViewById(R.id.day2);
+        day3 = (TextView)findViewById(R.id.day3);
+
+        time1 = (TextView)findViewById(R.id.time1);
+        time2 = (TextView)findViewById(R.id.time2);
+        time3 = (TextView)findViewById(R.id.time3);
 
 
         parseClasses();
@@ -61,28 +69,22 @@ public class StudentDetail extends Activity {
             public void done(List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
+                    day1.setText(classList.get(0).getString("weekDay").toUpperCase());
+                    time1.setText(classList.get(0).getString("time"));
 
+                    if(classList.size() > 1) {
+                        day2.setText(classList.get(1).getString("weekDay").toUpperCase());
+                        time2.setText(classList.get(1).getString("time"));
+                    }
 
-                    for (ParseObject daysObject : classList) {
-                        weekDay = daysObject.getString("weekDay").toUpperCase();
-
-
-
-
-
+                    if(classList.size() > 2) {
+                        day3.setText(classList.get(2).getString("weekDay").toUpperCase());
+                        time3.setText(classList.get(2).getString("time"));
                     }
 
 
+                }else {
 
-
-
-
-
-                } else if(classList.size() == 0) {
-
-
-
-                } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
             }
