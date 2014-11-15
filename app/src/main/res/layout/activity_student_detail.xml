@@ -8,13 +8,24 @@
         android:id="@+id/studentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="26sp"
         android:textColor="#000000"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
+        android:paddingTop="20dp"
+        android:paddingBottom="2dp"
+        />
+
+    <TextView
+        android:id="@+id/teacherName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_centerInParent="true"
         android:layout_below="@id/studentName"
         android:paddingTop="20dp"
-        android:paddingBottom="80dp"
+        android:paddingBottom="60dp"
         />
 
     <TextView
@@ -24,8 +35,10 @@
         android:textSize="30sp"
         android:layout_centerInParent="true"
         android:textColor="#000000"
-        android:layout_below="@id/studentName"
+        android:layout_below="@id/teacherName"
         android:paddingBottom="20dp"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <TextView
@@ -37,6 +50,8 @@
         android:textColor="#C1C1C1"
         android:layout_below="@id/day1"
         android:paddingBottom="60dp"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <TextView
@@ -48,6 +63,8 @@
         android:layout_centerInParent="true"
         android:layout_below="@id/time1"
         android:paddingBottom="20dp"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <TextView
@@ -59,6 +76,8 @@
         android:textColor="#C1C1C1"
         android:layout_below="@id/day2"
         android:paddingBottom="60dp"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <TextView
@@ -71,6 +90,8 @@
         android:textColor="#000000"
         android:layout_below="@id/time2"
         android:paddingBottom="20dp"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <TextView
@@ -81,23 +102,31 @@
         android:layout_centerInParent="true"
         android:textColor="#C1C1C1"
         android:layout_below="@id/day3"
+        android:onClick="onClick"
+        android:clickable="true"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DELETE STUDENT"
-        android:id="@+id/button"
+        android:textColor="#FF0000"
+        android:background="@null"
+        android:id="@+id/btnDeleteStudent"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
          />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CHANGE TEACHER"
-        android:id="@+id/button2"
-        android:layout_toRightOf="@+id/button"
+        android:background="@null"
+        android:id="@+id/btnDeleteTeacher"
+        android:layout_toRightOf="@+id/btnDeleteStudent"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
          />
 
 
