@@ -30,4 +30,16 @@
     <string name="title_activity_schedule_detail">ScheduleDetail</string>
     <string name="title_activity_student_detail">StudentDetail</string>
 
+    <string name="weekday_prompt">Choose a day</string>
+
+    <string-array name="weekdays_arrays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
 </resources>

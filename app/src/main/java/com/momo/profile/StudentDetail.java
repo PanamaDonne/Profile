@@ -1,13 +1,18 @@
 package com.momo.profile;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class StudentDetail extends Activity {
+public class StudentDetail extends Activity  {
 
     private TextView student;
     private TextView teacher;
@@ -36,13 +41,17 @@ public class StudentDetail extends Activity {
     private String weekDay;
     private String TAG;
     private Context context;
+    private ProgressDialog progress;
+    private Spinner spinner;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         TAG = "StudentDetail";
-
 
         context = this;
 
@@ -67,10 +76,22 @@ public class StudentDetail extends Activity {
         deleteStudentBtn = (Button) findViewById(R.id.btnDeleteStudent);
         deleteTeacherBtn = (Button) findViewById(R.id.btnDeleteStudent);
 
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+
+
+
+
+
+
+
+
+
 
         parseClasses();
+        showProgressDialog();
 
-        // STUDENT & TEACHER BUTTONS CLICK EVENTS
+        // CLICK EVENTS
         deleteStudentBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -85,12 +106,77 @@ public class StudentDetail extends Activity {
             public void onClick(View v) {
 
                 Log.i(TAG, "PRESSED");
-                deleteStudent();
+                deleteStudentAlertDialog();
 
 
             }
 
         });
+
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            public void onClick(View view) {
+
+
+
+                Log.i(TAG, "PRESSED");
+
+            }
+        };
+
+        day1.setOnClickListener(onClickListener);
+
+
+
+
+
+
+
+
+    }
+
+
+    void showProgressDialog () {
+
+        progress = new ProgressDialog(StudentDetail.this);
+        progress.setTitle("Loading");
+        progress.setMessage("Please wait...");
+        progress.show();
+    }
+
+
+
+    void deleteStudentAlertDialog() {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(StudentDetail.this);
+        builder1.setMessage("Are You sure You want to delete the student?");
+
+
+            // DELETE STUDENT
+            builder1.setPositiveButton("YES",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+
+                            showProgressDialog();
+                            deleteStudent();
+
+                        }
+                    });
+
+
+            builder1.setCancelable(true);
+            builder1.setNegativeButton("CANCEL",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+
+
+        builder1.show();
+
 
 
     }
@@ -122,6 +208,8 @@ public class StudentDetail extends Activity {
                         time3.setText(classList.get(2).getString("time"));
                     }
 
+                    progress.dismiss();
+
 
                 }else {
 
@@ -146,9 +234,17 @@ public class StudentDetail extends Activity {
                     classList.get(0).deleteInBackground(new DeleteCallback() {
                         public void done(ParseException e) {
                             if (e == null) {
+
+                                progress.dismiss();
                                 Toast.makeText(context, studentString + " deleted",
                                         Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(StudentDetail.this,
+                                        DashBoardActivity.class);
+                                startActivity(intent);
+
                             } else {
+                                progress.dismiss();
                                 Toast.makeText(context, "  not deleted. Please try again.",
                                         Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
@@ -163,7 +259,7 @@ public class StudentDetail extends Activity {
                                 if (e == null) {
 
                                 } else {
-                                    
+
                                     e.printStackTrace();
 
                                 }
