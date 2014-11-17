@@ -3,6 +3,7 @@ package com.momo.profile;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.DeleteCallback;
@@ -42,7 +44,7 @@ public class StudentDetail extends Activity  {
     private String TAG;
     private Context context;
     private ProgressDialog progress;
-    private Spinner spinner;
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
 
 
@@ -76,7 +78,7 @@ public class StudentDetail extends Activity  {
         deleteStudentBtn = (Button) findViewById(R.id.btnDeleteStudent);
         deleteTeacherBtn = (Button) findViewById(R.id.btnDeleteStudent);
 
-        spinner = (Spinner) findViewById(R.id.spinner);
+
 
 
 
@@ -114,17 +116,40 @@ public class StudentDetail extends Activity  {
         });
 
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        View.OnClickListener onClickListenerWeekday = new View.OnClickListener() {
             public void onClick(View view) {
-
-
 
                 Log.i(TAG, "PRESSED");
 
             }
         };
 
-        day1.setOnClickListener(onClickListener);
+        View.OnClickListener onClickListenerTime = new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Log.i(TAG, "PRESSED");
+
+
+
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        Log.i(TAG, "TIME PICKER: " + hourOfDay + " " + minute);
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+
+        day1.setOnClickListener(onClickListenerWeekday);
+        time1.setOnClickListener(onClickListenerTime);
+        timePickerDialog.setTitle("Please select the time");
+
+
 
 
 
@@ -180,6 +205,8 @@ public class StudentDetail extends Activity  {
 
 
     }
+
+
 
 
 
