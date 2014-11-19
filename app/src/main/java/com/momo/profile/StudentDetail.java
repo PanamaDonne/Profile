@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -44,9 +46,14 @@ public class StudentDetail extends Activity  {
     private String TAG;
     private Context context;
     private ProgressDialog progress;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int startHour, startMinute, endHour, endMinute;
+    private String stringStartHour, stringStartMinute, stringEndHour, stringEndMinute;
+    private String studentString;
+    private String objectId;
 
 
+    // PARSE QUERY FOR "STUDENT" CLASS.
+    final ParseQuery<ParseObject> query = ParseQuery.getQuery("student");
 
 
     @Override
@@ -63,8 +70,9 @@ public class StudentDetail extends Activity  {
         student = (TextView)findViewById(R.id.studentName);
         student.setText((getIntent().getStringExtra("studentName")));
 
-        teacher = (TextView)findViewById(R.id.teacherName);
+        studentString =  student.getText().toString();
 
+        teacher = (TextView)findViewById(R.id.teacherName);
 
         day1 = (TextView)findViewById(R.id.day1);
         day2 = (TextView)findViewById(R.id.day2);
@@ -124,30 +132,27 @@ public class StudentDetail extends Activity  {
             }
         };
 
-        View.OnClickListener onClickListenerTime = new View.OnClickListener() {
+        View.OnClickListener onClickListenerTime1 = new View.OnClickListener() {
             public void onClick(View view) {
 
-                Log.i(TAG, "PRESSED");
 
-
+                startTimePicker();
 
             }
         };
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                new TimePickerDialog.OnTimeSetListener() {
 
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute) {
-                        Log.i(TAG, "TIME PICKER: " + hourOfDay + " " + minute);
-                    }
-                }, mHour, mMinute, false);
-        timePickerDialog.show();
+
+
+
 
         day1.setOnClickListener(onClickListenerWeekday);
-        time1.setOnClickListener(onClickListenerTime);
-        timePickerDialog.setTitle("Please select the time");
+        day2.setOnClickListener(onClickListenerWeekday);
+        day3.setOnClickListener(onClickListenerWeekday);
+        time1.setOnClickListener(onClickListenerTime1);
+        //time2.setOnClickListener(onClickListenerTime);
+        //time3.setOnClickListener(onClickListenerTime);
+
 
 
 
@@ -168,6 +173,98 @@ public class StudentDetail extends Activity  {
         progress.setMessage("Please wait...");
         progress.show();
     }
+
+
+
+    // TIME PICKER DIALOGS
+    void endTimePicker() {
+
+        TimePickerDialog timePickerDialogEndTime = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+
+                        // PARSE
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day1.getText().toString().toLowerCase());
+
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            public void done(List<ParseObject> classList, ParseException e) {
+                                if (e == null && classList.size() > 0) {
+
+                                    objectId = classList.get(0).getObjectId();
+
+
+                                    query.getInBackground(objectId, new GetCallback<ParseObject>() {
+                                        public void done(ParseObject object, ParseException e) {
+                                            if (e == null) {
+
+                                                object.put("time", "0" + stringStartHour + "." + "0" + stringStartMinute);
+                                                object.saveInBackground();
+
+                                            } else {
+
+                                                Log.d(TAG, "Error: " + e.getMessage());
+                                            }
+                                        }
+                                    });
+
+
+
+                                }else {
+
+                                    Log.d(TAG, "Error: " + e.getMessage());
+                                }
+                            }
+                        });
+
+
+
+
+
+
+                        Log.i(TAG, "TIME PICKER: " + hourOfDay + " " + minute);
+                    }
+                }, endHour, endMinute, true);
+
+        timePickerDialogEndTime.setTitle("Please select the end time");
+        timePickerDialogEndTime.show();
+
+    }
+
+
+
+    void startTimePicker() {
+
+        TimePickerDialog timePickerDialogStartTime = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+
+
+
+                        endTimePicker();
+
+
+                    }
+                }, startHour, startMinute, true);
+
+        stringStartHour = Integer.toString(startHour);
+        stringStartMinute = Integer.toString(startMinute);
+
+        timePickerDialogStartTime.setTitle("Please select the start time");
+        timePickerDialogStartTime.show();
+
+    }
+
+
+
+
 
 
 
@@ -211,9 +308,7 @@ public class StudentDetail extends Activity  {
 
 
     void parseClasses() {
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("student");
 
-        String studentString = student.getText().toString();
 
         query.whereEqualTo("name", studentString);
 
@@ -248,9 +343,7 @@ public class StudentDetail extends Activity  {
 
 
     void deleteStudent() {
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("student");
 
-        final String studentString = student.getText().toString();
 
         query.whereEqualTo("name", studentString);
 
