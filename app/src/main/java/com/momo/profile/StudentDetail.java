@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -25,8 +24,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -50,9 +47,11 @@ public class StudentDetail extends Activity  {
     private String stringStartHour, stringStartMinute, stringEndHour, stringEndMinute;
     private String studentString;
     private String objectId;
+    private int textViewId;
 
 
-    // PARSE QUERY FOR "STUDENT" CLASS.
+    // ------------------------ PARSE QUERY FOR "STUDENT" CLASS. -----------------------------------
+
     final ParseQuery<ParseObject> query = ParseQuery.getQuery("student");
 
 
@@ -101,7 +100,8 @@ public class StudentDetail extends Activity  {
         parseClasses();
         showProgressDialog();
 
-        // CLICK EVENTS
+        // ------------------------------------------- CLICK EVENTS --------------------------------
+
         deleteStudentBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -132,11 +132,39 @@ public class StudentDetail extends Activity  {
             }
         };
 
-        View.OnClickListener onClickListenerTime1 = new View.OnClickListener() {
+        View.OnClickListener onClickListenerTime = new View.OnClickListener() {
             public void onClick(View view) {
+
+                textViewId = view.getId();
+
+                switch (textViewId) {
+                    case R.id.time1:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day1.getText().toString().toLowerCase());
+
+
+                        break;
+                    case R.id.time2:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day2.getText().toString().toLowerCase());
+
+
+                        break;
+                    case R.id.time3:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day3.getText().toString().toLowerCase());
+
+                        break;
+                }
 
 
                 startTimePicker();
+
+
+
 
             }
         };
@@ -149,17 +177,10 @@ public class StudentDetail extends Activity  {
         day1.setOnClickListener(onClickListenerWeekday);
         day2.setOnClickListener(onClickListenerWeekday);
         day3.setOnClickListener(onClickListenerWeekday);
-        time1.setOnClickListener(onClickListenerTime1);
-        //time2.setOnClickListener(onClickListenerTime);
-        //time3.setOnClickListener(onClickListenerTime);
 
-
-
-
-
-
-
-
+        time1.setOnClickListener(onClickListenerTime);
+        time2.setOnClickListener(onClickListenerTime);
+        time3.setOnClickListener(onClickListenerTime);
 
 
 
@@ -176,7 +197,70 @@ public class StudentDetail extends Activity  {
 
 
 
-    // TIME PICKER DIALOGS
+    // --------------------------------------  TIME PICKER DIALOGS ---------------------------------
+
+
+    void parseTime () {
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(final List<ParseObject> classList, ParseException e) {
+                if (e == null && classList.size() > 0) {
+
+                    Log.i(TAG, "ID: " + textViewId );
+
+                    switch (textViewId) {
+
+
+                        case R.id.time1:
+
+                            objectId = classList.get(0).getObjectId();
+
+
+                            break;
+                        case R.id.time2:
+
+                            objectId = classList.get(1).getObjectId();
+
+                            break;
+                        case R.id.time3:
+
+                            objectId = classList.get(2).getObjectId();
+
+                            break;
+                    }
+
+
+
+
+
+                   query.getInBackground(objectId, new GetCallback<ParseObject>() {
+                        public void done(ParseObject object, ParseException e) {
+                            if (e == null) {
+
+
+
+                                object.put("time", stringStartHour + "." + stringStartMinute + " - " + stringEndHour + "." + stringEndMinute);
+                                object.saveInBackground();
+
+                                Log.i(TAG, "TIME: " + stringStartHour + "." + stringStartMinute + " - " + stringEndHour + "." + stringEndMinute);
+
+
+                            } else {
+
+                                Log.d(TAG, "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+
+
+                }else {
+
+                    Log.d(TAG, "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
     void endTimePicker() {
 
         TimePickerDialog timePickerDialogEndTime = new TimePickerDialog(this,
@@ -187,40 +271,10 @@ public class StudentDetail extends Activity  {
                                           int minute) {
 
 
-                        // PARSE
-                        query.whereEqualTo("name", studentString);
-                        query.whereEqualTo("weekDay", day1.getText().toString().toLowerCase());
+                        stringEndHour = Integer.toString(hourOfDay);
+                        stringEndMinute = Integer.toString(minute);
 
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> classList, ParseException e) {
-                                if (e == null && classList.size() > 0) {
-
-                                    objectId = classList.get(0).getObjectId();
-
-
-                                    query.getInBackground(objectId, new GetCallback<ParseObject>() {
-                                        public void done(ParseObject object, ParseException e) {
-                                            if (e == null) {
-
-                                                object.put("time", "0" + stringStartHour + "." + "0" + stringStartMinute);
-                                                object.saveInBackground();
-
-                                            } else {
-
-                                                Log.d(TAG, "Error: " + e.getMessage());
-                                            }
-                                        }
-                                    });
-
-
-
-                                }else {
-
-                                    Log.d(TAG, "Error: " + e.getMessage());
-                                }
-                            }
-                        });
-
+                        parseTime();
 
 
 
@@ -246,16 +300,16 @@ public class StudentDetail extends Activity  {
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
 
-
-
+                        stringStartHour = Integer.toString(hourOfDay);
+                        stringStartMinute = Integer.toString(minute);
                         endTimePicker();
-
 
                     }
                 }, startHour, startMinute, true);
 
-        stringStartHour = Integer.toString(startHour);
-        stringStartMinute = Integer.toString(startMinute);
+
+
+
 
         timePickerDialogStartTime.setTitle("Please select the start time");
         timePickerDialogStartTime.show();
