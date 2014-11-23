@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -24,6 +25,8 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -47,7 +50,8 @@ public class StudentDetail extends Activity  {
     private String stringStartHour, stringStartMinute, stringEndHour, stringEndMinute;
     private String studentString;
     private String objectId;
-    private int textViewId;
+    private int timeTextViewId;
+    private int dayTextViewId;
 
 
     // ------------------------ PARSE QUERY FOR "STUDENT" CLASS. -----------------------------------
@@ -127,17 +131,44 @@ public class StudentDetail extends Activity  {
         View.OnClickListener onClickListenerWeekday = new View.OnClickListener() {
             public void onClick(View view) {
 
-                Log.i(TAG, "PRESSED");
+                dayTextViewId = view.getId();
+
+                switch (dayTextViewId) {
+                    case R.id.day1:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day1.getText().toString().toLowerCase());
+
+
+                        break;
+                    case R.id.day2:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day2.getText().toString().toLowerCase());
+
+
+                        break;
+                    case R.id.day3:
+
+                        query.whereEqualTo("name", studentString);
+                        query.whereEqualTo("weekDay", day3.getText().toString().toLowerCase());
+
+                        break;
+                }
+
+
+                daysOfWeekPicker();
 
             }
         };
 
+
         View.OnClickListener onClickListenerTime = new View.OnClickListener() {
             public void onClick(View view) {
 
-                textViewId = view.getId();
+                timeTextViewId = view.getId();
 
-                switch (textViewId) {
+                switch (timeTextViewId) {
                     case R.id.time1:
 
                         query.whereEqualTo("name", studentString);
@@ -159,6 +190,9 @@ public class StudentDetail extends Activity  {
 
                         break;
                 }
+
+
+
 
 
                 startTimePicker();
@@ -205,9 +239,9 @@ public class StudentDetail extends Activity  {
             public void done(final List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
-                    Log.i(TAG, "ID: " + textViewId );
+                    Log.i(TAG, "ID: " + timeTextViewId );
 
-                    switch (textViewId) {
+                    switch (timeTextViewId) {
 
 
                         case R.id.time1:
@@ -261,6 +295,67 @@ public class StudentDetail extends Activity  {
         });
     }
 
+
+    void parseWeekDay () {
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(final List<ParseObject> classList, ParseException e) {
+                if (e == null && classList.size() > 0) {
+
+                    Log.i(TAG, "ID: " + dayTextViewId );
+
+                    objectId = classList.get(0).getObjectId();
+
+
+                    query.getInBackground(objectId, new GetCallback<ParseObject>() {
+                        public void done(ParseObject object, ParseException e) {
+                            if (e == null) {
+
+                                object.put("weekDay", weekDay.toLowerCase());
+                                object.saveInBackground();
+
+                            } else {
+
+                                Log.d(TAG, "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+
+
+                }else {
+
+                    Log.d(TAG, "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+
+    // DATE PICKER
+    private void daysOfWeekPicker() {
+
+
+        final String[] days = getResources().getStringArray(R.array.days);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Change day of class");
+        builder.setItems(days, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+
+                weekDay = days[item];
+
+                parseWeekDay();
+
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+
+
+    // TIME PICKER DIALOGS
     void endTimePicker() {
 
         TimePickerDialog timePickerDialogEndTime = new TimePickerDialog(this,

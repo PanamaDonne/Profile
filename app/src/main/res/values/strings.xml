@@ -32,7 +32,7 @@
 
     <string name="weekday_prompt">Choose a day</string>
 
-    <string-array name="weekdays_arrays">
+    <string-array name="days">
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
