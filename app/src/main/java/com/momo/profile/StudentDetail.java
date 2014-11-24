@@ -41,8 +41,9 @@ public class StudentDetail extends Activity  {
     private TextView time2;
     private TextView time3;
     private Button deleteStudentBtn;
-    private Button deleteTeacherBtn;
+    private Button changeTeacherBtn;
     private String weekDay;
+    private String listTeacher;
     private String TAG;
     private Context context;
     private ProgressDialog progress;
@@ -87,7 +88,7 @@ public class StudentDetail extends Activity  {
 
 
         deleteStudentBtn = (Button) findViewById(R.id.btnDeleteStudent);
-        deleteTeacherBtn = (Button) findViewById(R.id.btnDeleteStudent);
+        changeTeacherBtn = (Button) findViewById(R.id.btnChangeTeacher);
 
 
 
@@ -110,17 +111,19 @@ public class StudentDetail extends Activity  {
             public void onClick(View v) {
 
                 Log.i(TAG, "PRESSED");
+                deleteStudentAlertDialog();
 
 
             }
 
         });
 
-        deleteTeacherBtn.setOnClickListener(new View.OnClickListener() {
+        changeTeacherBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 Log.i(TAG, "PRESSED");
-                deleteStudentAlertDialog();
+
+                changeTeacherList();
 
 
             }
@@ -239,7 +242,7 @@ public class StudentDetail extends Activity  {
             public void done(final List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
-                    Log.i(TAG, "ID: " + timeTextViewId );
+                    Log.i(TAG, "ID: " + classList.get(0).getObjectId());
 
                     switch (timeTextViewId) {
 
@@ -301,9 +304,13 @@ public class StudentDetail extends Activity  {
             public void done(final List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
-                    Log.i(TAG, "ID: " + dayTextViewId );
+                    Log.i(TAG, "ID: " + classList.get(0).getObjectId());
+
+                    Log.i(TAG, "FOUND: " + classList.size());
 
                     objectId = classList.get(0).getObjectId();
+
+
 
 
                     query.getInBackground(objectId, new GetCallback<ParseObject>() {
@@ -313,12 +320,33 @@ public class StudentDetail extends Activity  {
                                 object.put("weekDay", weekDay.toLowerCase());
                                 object.saveInBackground();
 
+
+
                             } else {
 
                                 Log.d(TAG, "Error: " + e.getMessage());
                             }
                         }
                     });
+
+
+
+                }else {
+
+                    Log.d(TAG, "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+
+
+    void parseTeacher () {
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(final List<ParseObject> classList, ParseException e) {
+                if (e == null && classList.size() > 0) {
+
+                    Log.i(TAG, "FOUND: " + classList.size());
 
 
 
@@ -344,7 +372,11 @@ public class StudentDetail extends Activity  {
 
                 weekDay = days[item];
 
-                parseWeekDay();
+                changeDayAlertDialog();
+
+
+
+
 
             }
         });
@@ -370,10 +402,6 @@ public class StudentDetail extends Activity  {
                         stringEndMinute = Integer.toString(minute);
 
                         parseTime();
-
-
-
-
 
                         Log.i(TAG, "TIME PICKER: " + hourOfDay + " " + minute);
                     }
@@ -403,9 +431,6 @@ public class StudentDetail extends Activity  {
                 }, startHour, startMinute, true);
 
 
-
-
-
         timePickerDialogStartTime.setTitle("Please select the start time");
         timePickerDialogStartTime.show();
 
@@ -416,7 +441,7 @@ public class StudentDetail extends Activity  {
 
 
 
-
+    // ALERT DIALOGS
     void deleteStudentAlertDialog() {
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(StudentDetail.this);
@@ -452,6 +477,43 @@ public class StudentDetail extends Activity  {
 
     }
 
+
+
+    void changeDayAlertDialog() {
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(StudentDetail.this);
+        builder1.setMessage("Are you sure you want to change day of the class?");
+
+
+        // DELETE STUDENT
+        builder1.setPositiveButton("YES",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        parseWeekDay();
+                        Intent intent = new Intent(StudentDetail.this,
+                                Students.class);
+                        startActivity(intent);
+
+                    }
+                });
+
+
+        builder1.setCancelable(true);
+        builder1.setNegativeButton("CANCEL",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+
+
+        builder1.show();
+
+
+
+    }
 
 
 
@@ -550,6 +612,33 @@ public class StudentDetail extends Activity  {
         });
 
 
+
+    }
+
+
+
+    // CHANGE TEACHER
+    private void changeTeacherList() {
+
+
+        final String[] teachers = getResources().getStringArray(R.array.teachers);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Change teacher");
+        builder.setItems(teachers, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+
+                listTeacher = teachers[item];
+
+                query.whereEqualTo("teacher", listTeacher);
+                parseTeacher();
+
+
+
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
 
     }
 

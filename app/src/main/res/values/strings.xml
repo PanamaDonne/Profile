@@ -42,4 +42,10 @@
         <item>Sunday</item>
     </string-array>
 
+    <string-array name="teachers">
+        <item>Tobias</item>
+        <item>Altair</item>
+        <item>Thiago</item>
+    </string-array>
+
 </resources>

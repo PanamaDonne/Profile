@@ -116,7 +116,7 @@
         android:layout_height="wrap_content"
         android:text="CHANGE TEACHER"
         android:background="@null"
-        android:id="@+id/btnDeleteTeacher"
+        android:id="@+id/btnChangeTeacher"
         android:layout_toRightOf="@+id/btnDeleteStudent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
