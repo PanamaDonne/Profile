@@ -43,8 +43,9 @@ public class StudentDetail extends Activity  {
     private Button deleteStudentBtn;
     private Button changeTeacherBtn;
     private String weekDay;
-    private String listTeacher;
     private String TAG;
+    private String newTeacher;
+    private String oldTeacher;
     private Context context;
     private ProgressDialog progress;
     private int startHour, startMinute, endHour, endMinute;
@@ -346,7 +347,7 @@ public class StudentDetail extends Activity  {
             public void done(final List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
-                    Log.i(TAG, "FOUND: " + classList.size());
+
 
 
 
@@ -521,15 +522,18 @@ public class StudentDetail extends Activity  {
     void parseClasses() {
 
 
+        final String CLASS_INFO_LABEL = "classinfo";
+
+
         query.whereEqualTo("name", studentString);
 
         query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> classList, ParseException e) {
+            public void done(final List<ParseObject> classList, ParseException e) {
                 if (e == null && classList.size() > 0) {
 
                     day1.setText(classList.get(0).getString("weekDay").toUpperCase());
                     time1.setText(classList.get(0).getString("time"));
-                    teacher.setText("( " + classList.get(0).getString("teacher") + " )");
+                    teacher.setText(classList.get(0).getString("teacher"));
 
                     if(classList.size() > 1) {
                         day2.setText(classList.get(1).getString("weekDay").toUpperCase());
@@ -542,6 +546,19 @@ public class StudentDetail extends Activity  {
                     }
 
                     progress.dismiss();
+
+                    // Release any objects previously pinned for this query.
+                    ParseObject.unpinAllInBackground(CLASS_INFO_LABEL, classList, new DeleteCallback() {
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                // There was some error.
+                                return;
+                            }
+
+                            // Add the latest results for this query to the cache.
+                            ParseObject.pinAllInBackground(CLASS_INFO_LABEL, classList);
+                        }
+                    });
 
 
                 }else {
@@ -628,9 +645,13 @@ public class StudentDetail extends Activity  {
         builder.setItems(teachers, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
 
-                listTeacher = teachers[item];
+                newTeacher = teachers[item];
 
-                query.whereEqualTo("teacher", listTeacher);
+                oldTeacher = teacher.getText().toString();
+
+                Log.i(TAG, "OLD TEACHER: " + oldTeacher);
+
+                query.whereEqualTo("teacher", oldTeacher);
                 parseTeacher();
 
 

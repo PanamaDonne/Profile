@@ -95,6 +95,7 @@ public class DashBoardActivity extends Activity {
     void checkLoggedIn() {
 
         // Add your initialization code here
+        Parse.enableLocalDatastore(this);
         Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
 
 
