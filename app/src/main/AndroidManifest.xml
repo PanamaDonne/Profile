@@ -11,12 +11,11 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".DashBoardActivity"
-            android:label="@string/title_activity_dashboard" >
+        <activity android:name=".DashBoardActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,6 +47,10 @@
         <activity
             android:name=".StudentDetail"
             android:label="@string/title_activity_student_detail" >
+        </activity>
+        <activity
+            android:name=".Teachers"
+            android:label="@string/title_activity_teachers" >
         </activity>
     </application>
 

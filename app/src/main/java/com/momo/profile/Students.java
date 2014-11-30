@@ -39,7 +39,6 @@ public class Students extends Activity {
 
 
 
-
         // ----------------------------------- INIT PARSE.COM ----------------------------------------
         ParseObject.registerSubclass(ParseStudent.class);
         Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
@@ -55,17 +54,13 @@ public class Students extends Activity {
                 TextView studentNameTextField = (TextView) view.findViewById(R.id.text1);
                 CharSequence studentName = studentNameTextField.getText();
 
-
                 Intent intent = new Intent(Students.this,StudentDetail.class);
                 intent.putExtra("studentName", studentName);
 
                 startActivity(intent);
-
             }
 
         });
-
-
 
     }
 

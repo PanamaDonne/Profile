@@ -37,17 +37,22 @@ public class DashBoardActivity extends Activity {
         button1=(Button)findViewById(com.momo.profile.R.id.button1);
         button1.setTextColor(Color.BLACK);
 
-        /*if (ParseUser.getCurrentUser().getUsername().equals("admin")) {
-            button1.setText("Agendamentos");
-        }*/
-
-
         button2=(Button)findViewById(com.momo.profile.R.id.button2);
         button2.setTextColor(Color.BLACK);
 
 
         button3=(Button)findViewById(com.momo.profile.R.id.button3);
         button3.setTextColor(Color.BLACK);
+
+
+        /**
+         *       NON ADMIN USER JOURNEY
+         */
+
+        /*if (!ParseUser.getCurrentUser().getUsername().equals("altair")) {
+            button2.setText("Class Control");
+            button3.setVisibility(View.GONE);
+        }*/
 
 
 
@@ -81,6 +86,9 @@ public class DashBoardActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(DashBoardActivity.this,Teachers.class);
+                startActivity(intent);
+
 
             }
         });
@@ -95,7 +103,6 @@ public class DashBoardActivity extends Activity {
     void checkLoggedIn() {
 
         // Add your initialization code here
-        Parse.enableLocalDatastore(this);
         Parse.initialize(this, "fpHnJtvttEKiKs2FmZ6UPMrVxPjD4KMdnRj3jgIi", "w3KrbARBlNEJg0gNhD0FwiJBvcoDokDloLYQMtDz");
 
 

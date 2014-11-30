@@ -13,6 +13,8 @@ public class ScheduleDetail extends Activity {
     private TextView student;
     private TextView teacher;
     private TextView time;
+    private TextView date;
+    private TextView weekDay;
     private String TAG;
 
 
@@ -34,6 +36,14 @@ public class ScheduleDetail extends Activity {
 
         time = (TextView)findViewById(R.id.time);
         time.setText((getIntent().getStringExtra("time")));
+
+
+        date = (TextView)findViewById(R.id.date);
+        date.setText((getIntent().getStringExtra("date")));
+
+        weekDay = (TextView)findViewById(R.id.weekDay);
+        weekDay.setText((getIntent().getStringExtra("weekDay")));
+
 
         TAG = "ScheduleDetail";
 

@@ -71,8 +71,8 @@ public class schedule extends Activity {
 
 
         progress = new ProgressDialog(schedule.this);
-        progress.setTitle("Carregando");
-        progress.setMessage("Por favor aguarde...");
+        progress.setTitle("Loading");
+        progress.setMessage("Please wait...");
         progress.show();
 
         long delayInMillis = 2000;
@@ -117,14 +117,14 @@ public class schedule extends Activity {
         fmtDay.format("%te", cal);
         currentDay = fmtDay.toString();
 
-        Log.i(TAG, "TIME STAMP: " + currentDay);
+
 
 
         currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-        date = currentDay + " de " + currentMonth + " 2014";
 
-        text = (TextView) findViewById(com.momo.profile.R.id.textView);
-        text.setText(date);
+        text = (TextView) findViewById(R.id.textView);
+
+
 
 
 
@@ -147,6 +147,8 @@ public class schedule extends Activity {
                 intent.putExtra("studentName", studentName);
                 intent.putExtra("teacherName", teacherName);
                 intent.putExtra("time", time);
+                intent.putExtra("weekDay", Globals.weekDay);
+                intent.putExtra("date", date);
                 startActivity(intent);
 
             }
@@ -176,74 +178,74 @@ public class schedule extends Activity {
 
                        case 0:  {
 
-                        monthString = "JANEIRO";
+                        monthString = "JANUARY";
 
 
                     }
                     break;
                     case 1:  {
 
-                        monthString = "FEVEREIRO";
+                        monthString = "FEBRUARY";
 
                     }
                     break;
                     case 2:  {
 
-                        monthString = "MARCO";
+                        monthString = "MARCH";
 
                     }
                     break;
                     case 3:  {
 
-                        monthString = "ABRIL";
+                        monthString = "APRIL";
 
                     }
                     break;
                     case 4:  {
 
-                        monthString = "MAIO";
+                        monthString = "MAY";
 
                     }
                     break;
                     case 5:  {
 
-                        monthString = "JUNHO";
+                        monthString = "JUNE";
 
                     }
                     break;
                     case 6:  {
 
-                        monthString = "JULHO";
+                        monthString = "JULY";
 
                     }
                     break;
                     case 7:  {
 
-                        monthString = "AGOSTO";
+                        monthString = "AUGUST";
 
                     }
                     break;
                     case 8:  {
 
-                        monthString = "SETEMBRO";
+                        monthString = "SEPTEMBER";
 
                     }
                     break;
                     case 9: {
 
-                        monthString = "OUTUBRO";
+                        monthString = "OCTOBER";
 
                     }
                     break;
                     case 10: {
 
-                        monthString = "NOVEMBRO";
+                        monthString = "NOVEMBER";
 
                     }
                     break;
                     case 11: {
 
-                        monthString = "DEZEMBRO";
+                        monthString = "DECEMBER";
 
                     }
                     break;
@@ -253,7 +255,7 @@ public class schedule extends Activity {
 
                 }
 
-                date = day + " de " + monthString + " " + yearString;
+                date = day + " " + monthString + " " + yearString;
                 Log.i(TAG, "DATE: " + date);
                 text.setText(date);
 
@@ -283,6 +285,10 @@ public class schedule extends Activity {
 
 
                 Log.i(TAG, "WEEKDAY: " + Globals.weekDay);
+
+
+
+
 
 
             }

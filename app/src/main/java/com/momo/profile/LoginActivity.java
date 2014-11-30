@@ -58,7 +58,7 @@ public class LoginActivity extends Activity {
                                 if (user != null) {
 
 
-                                    if (user.getUsername().equals("admin")) {
+                                    if (user.getUsername().equals("altair")) {
 
                                         ParseACL roleACL = new ParseACL();
                                         roleACL.setPublicReadAccess(true);

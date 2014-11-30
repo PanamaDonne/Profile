@@ -3,33 +3,17 @@
 
     <string name="app_name">Profile English School</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_dashboard">Profile</string>
     <string name="title_activity_schedule">Calendar</string>
-    <string name="title_activity_sauna">SAUNA</string>
     <string name="title_activity_classes">CLASSES</string>
     <string name="title_activity_report">REPORT A PROBLEM</string>
-    <string name="title_activity_mural">mural</string>
-    <string name="title_agenda">Agenda</string>
-    <string name="title_activity_sindico">sindico</string>
-    <string name="title_activity_portaria">portaria</string>
-    <string name="title_activity_my_condo">myCondo</string>
-    <string name="title_activity_map">map</string>
-    <string name="title_activity_delivery">delivery</string>
-    <string name="title_activity_agenda">Agenda</string>
     <string name="title_activity_login">Faça seu login</string>
     <string name="Username">Usuário</string>
     <string name="Password">Senha</string>
     <string name="LoginBtn">Login</string>
     <string name="LogoutBtn">Log Out</string>
-    <string name="booked">Booked - Want to get in standby line?</string>
-    <string name="title_activity_agenda_detail">Agenda</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_agenda_list">Items</string>
-    <string name="title_agenda_detail">Agenda Detalhes</string>
     <string name="title_activity_students">Students</string>
     <string name="title_activity_schedule_detail">ScheduleDetail</string>
     <string name="title_activity_student_detail">StudentDetail</string>
-
     <string name="weekday_prompt">Choose a day</string>
 
     <string-array name="days">
@@ -41,11 +25,13 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
-
     <string-array name="teachers">
         <item>Tobias</item>
         <item>Altair</item>
         <item>Thiago</item>
     </string-array>
+
+    <string name="title_activity_teachers">Teachers</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
