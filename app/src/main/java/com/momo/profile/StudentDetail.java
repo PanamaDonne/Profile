@@ -195,22 +195,10 @@ public class StudentDetail extends Activity  {
                         break;
                 }
 
-
-
-
-
                 startTimePicker();
-
-
-
 
             }
         };
-
-
-
-
-
 
         day1.setOnClickListener(onClickListenerWeekday);
         day2.setOnClickListener(onClickListenerWeekday);

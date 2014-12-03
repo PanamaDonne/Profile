@@ -6,7 +6,7 @@
 
     <CalendarView
         android:layout_width="fill_parent"
-        android:layout_height="400dip"
+        android:layout_height="270dip"
         android:background="#AAFFFFFF"
         android:id="@+id/calendarView"
          />

@@ -147,7 +147,7 @@ public class schedule extends Activity {
                 intent.putExtra("studentName", studentName);
                 intent.putExtra("teacherName", teacherName);
                 intent.putExtra("time", time);
-                intent.putExtra("weekDay", Globals.weekDay);
+                intent.putExtra("weekDay", Globals.dayOfMonth);
                 intent.putExtra("date", date);
                 startActivity(intent);
 
@@ -264,27 +264,15 @@ public class schedule extends Activity {
                 GregorianCalendar cal = new GregorianCalendar(year, month, dayOfMonth);
                 int weekDayInt = cal.get(Calendar.DAY_OF_WEEK);
 
-                switch(weekDayInt){
-                    case 1: Globals.weekDay = "sunday";
-                        break;
-                    case 2: Globals.weekDay = "monday";
-                        break;
-                    case 3: Globals.weekDay = "tuesday";
-                        break;
-                    case 4: Globals.weekDay = "wednesday";
-                        break;
-                    case 5: Globals.weekDay = "thursday";
-                        break;
-                    case 6: Globals.weekDay = "friday";
-                        break;
-                    case 7: Globals.weekDay = "saturday";
-                        break;
-                }
+
+                Log.i(TAG, "DAY OF MONTH: " + dayOfMonth);
+
+               Globals.dayOfMonth = dayOfMonth;
 
                 parseClasses();
 
 
-                Log.i(TAG, "WEEKDAY: " + Globals.weekDay);
+
 
 
 
@@ -317,7 +305,7 @@ public class schedule extends Activity {
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("student");
 
         progress.show();
-        query.whereEqualTo("weekDay", Globals.weekDay);
+        query.whereEqualTo("classDate", Globals.dayOfMonth);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> classList, ParseException e) {

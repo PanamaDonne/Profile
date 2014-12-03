@@ -37,6 +37,10 @@ public class ParseStudent extends ParseObject {
         return getString("time");
     }
 
+    public String getDate() {
+        return getString("classDate");
+    }
+
 
 
 

@@ -9,7 +9,8 @@ package com.momo.profile;
 
 public class Globals {
 
-    public static String weekDay = null;
+    public static int dayOfMonth;
+    public static String teacher;
 
 
 }

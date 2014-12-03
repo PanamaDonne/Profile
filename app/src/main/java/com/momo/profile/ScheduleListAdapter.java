@@ -16,7 +16,7 @@ public class ScheduleListAdapter extends ParseQueryAdapter<ParseStudent> {
     private TextView studentTextView;
     private TextView teacherTextView;
     private TextView timeTextView;
-    private static String weekDay;
+    private static int dayOfMonth;
 
 
 
@@ -26,11 +26,11 @@ public class ScheduleListAdapter extends ParseQueryAdapter<ParseStudent> {
         super(context, new ParseQueryAdapter.QueryFactory<ParseStudent>() {
             public ParseQuery create() {
 
-                weekDay = Globals.weekDay;
+                dayOfMonth = Globals.dayOfMonth;
 
                 ParseQuery query = new ParseQuery("student");
 
-                query.whereContains("weekDay", weekDay);
+                query.whereEqualTo("classDate", dayOfMonth);
 
                 query.orderByAscending("time");
 

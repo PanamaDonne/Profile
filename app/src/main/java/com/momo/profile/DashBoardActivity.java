@@ -25,6 +25,8 @@ public class DashBoardActivity extends Activity {
     private Button button3;
     private Button button4;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,10 @@ public class DashBoardActivity extends Activity {
 
         button3=(Button)findViewById(com.momo.profile.R.id.button3);
         button3.setTextColor(Color.BLACK);
+
+
+        button4=(Button)findViewById(com.momo.profile.R.id.button4);
+        button4.setTextColor(Color.BLACK);
 
 
         /**
@@ -89,6 +95,18 @@ public class DashBoardActivity extends Activity {
                 Intent intent = new Intent(DashBoardActivity.this,Teachers.class);
                 startActivity(intent);
 
+
+            }
+        });
+
+
+        button4.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DashBoardActivity.this, ClassControl.class);
+                startActivity(intent);
 
             }
         });
