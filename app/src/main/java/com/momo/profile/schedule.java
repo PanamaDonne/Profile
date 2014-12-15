@@ -128,7 +128,7 @@ public class schedule extends Activity {
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(final AdapterView<?> parent, View view,
                                     final int position, long id) {
 
@@ -153,7 +153,7 @@ public class schedule extends Activity {
 
             }
 
-        });
+        });*/
 
 
 
@@ -306,6 +306,9 @@ public class schedule extends Activity {
 
         progress.show();
         query.whereEqualTo("classDate", Globals.dayOfMonth);
+
+
+        Log.i(TAG, "DAY OF MONTH: " + Globals.dayOfMonth);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> classList, ParseException e) {

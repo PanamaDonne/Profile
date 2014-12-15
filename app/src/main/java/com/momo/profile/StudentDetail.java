@@ -93,18 +93,8 @@ public class StudentDetail extends Activity  {
 
 
 
-
-
-
-
-
-
-
-
-
-
-        parseClasses();
-        showProgressDialog();
+        //parseClasses();
+        //showProgressDialog();
 
         // ------------------------------------------- CLICK EVENTS --------------------------------
 

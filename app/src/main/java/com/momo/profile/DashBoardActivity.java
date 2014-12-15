@@ -37,18 +37,18 @@ public class DashBoardActivity extends Activity {
         checkLoggedIn();
 
         button1=(Button)findViewById(com.momo.profile.R.id.button1);
-        button1.setTextColor(Color.BLACK);
+
 
         button2=(Button)findViewById(com.momo.profile.R.id.button2);
-        button2.setTextColor(Color.BLACK);
+
 
 
         button3=(Button)findViewById(com.momo.profile.R.id.button3);
-        button3.setTextColor(Color.BLACK);
+
 
 
         button4=(Button)findViewById(com.momo.profile.R.id.button4);
-        button4.setTextColor(Color.BLACK);
+
 
 
         /**
@@ -105,8 +105,8 @@ public class DashBoardActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(DashBoardActivity.this, ClassControl.class);
-                startActivity(intent);
+                //Intent intent = new Intent(DashBoardActivity.this, ClassControl.class);
+                //startActivity(intent);
 
             }
         });
